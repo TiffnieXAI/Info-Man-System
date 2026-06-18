@@ -23,6 +23,7 @@ public class ApiResponse<T> {
         return ApiResponse.<T>builder()
                 .success(false)
                 .message(message)
+                .data(null)
                 .build();
     }
 }

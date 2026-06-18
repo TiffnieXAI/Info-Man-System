@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    // POST /api/members
+    // ADMIN only — handled by SecurityConfig
     @PostMapping
     public ResponseEntity<ApiResponse<Member>> createMember(
             @Valid @RequestBody MemberDTO dto) {
@@ -28,7 +29,7 @@ public class MemberController {
                 .body(ApiResponse.success("Member registered successfully.", created));
     }
 
-    // GET /api/members
+    // ADMIN only — handled by SecurityConfig
     @GetMapping
     public ResponseEntity<ApiResponse<List<Member>>> getAllMembers() {
         List<Member> members = memberService.getAllMembers();
@@ -36,31 +37,50 @@ public class MemberController {
                 ApiResponse.success("Members retrieved successfully.", members));
     }
 
-    // GET /api/members/{pinId}
+    // ADMIN: any pinId | USER: own pinId only
     @GetMapping("/{pinId}")
     public ResponseEntity<ApiResponse<Member>> getMemberById(
-            @PathVariable String pinId) {
+            @PathVariable String pinId,
+            Authentication auth) {
+        if (isUser(auth) && !ownsPinId(auth, pinId)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ApiResponse.error("Access denied."));
+        }
         Member member = memberService.getMemberById(pinId);
         return ResponseEntity.ok(
                 ApiResponse.success("Member retrieved successfully.", member));
     }
 
-    // PUT /api/members/{pinId}
+    // ADMIN: any pinId | USER: own pinId only
     @PutMapping("/{pinId}")
     public ResponseEntity<ApiResponse<Member>> updateMember(
             @PathVariable String pinId,
-            @Valid @RequestBody MemberDTO dto) {
+            @Valid @RequestBody MemberDTO dto,
+            Authentication auth) {
+        if (isUser(auth) && !ownsPinId(auth, pinId)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ApiResponse.error("Access denied."));
+        }
         Member updated = memberService.updateMember(pinId, dto);
         return ResponseEntity.ok(
                 ApiResponse.success("Member updated successfully.", updated));
     }
 
-    // DELETE /api/members/{pinId}
+    // ADMIN only — handled by SecurityConfig
     @DeleteMapping("/{pinId}")
     public ResponseEntity<ApiResponse<Void>> deleteMember(
             @PathVariable String pinId) {
         memberService.deleteMember(pinId);
         return ResponseEntity.ok(
                 ApiResponse.success("Member deleted successfully.", null));
+    }
+
+    private boolean isUser(Authentication auth) {
+        return auth.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_USER"));
+    }
+
+    private boolean ownsPinId(Authentication auth, String pinId) {
+        return pinId.equals(auth.getCredentials());
     }
 }
