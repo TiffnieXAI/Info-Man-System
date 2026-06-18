@@ -31,6 +31,9 @@ public class SecurityConfig {
 
                 // admin only
                 .requestMatchers(HttpMethod.GET, "/api/members").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/members").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/contacts/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/contacts/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/members/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/contacts/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/dependents/**").hasRole("ADMIN")
