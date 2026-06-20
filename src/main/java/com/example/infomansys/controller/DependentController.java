@@ -19,7 +19,6 @@ public class DependentController {
 
     private final DependentService dependentService;
 
-    // ADMIN: any | USER: own pinId only
     @PostMapping
     public ResponseEntity<ApiResponse<Dependent>> createDependent(
             @Valid @RequestBody DependentDTO dto) {
@@ -28,7 +27,6 @@ public class DependentController {
                 .body(ApiResponse.success("Dependent added successfully.", created));
     }
 
-    // ADMIN only — handled by SecurityConfig
     @GetMapping
     public ResponseEntity<ApiResponse<List<Dependent>>> getAllDependents() {
         List<Dependent> dependents = dependentService.getAllDependents();
@@ -36,7 +34,6 @@ public class DependentController {
                 ApiResponse.success("Dependents retrieved successfully.", dependents));
     }
 
-    // ADMIN: any | USER: own pinId only (checked via depId -> member)
     @GetMapping("/{depId}")
     public ResponseEntity<ApiResponse<Dependent>> getDependentById(
             @PathVariable Integer depId) {
@@ -45,7 +42,6 @@ public class DependentController {
                 ApiResponse.success("Dependent retrieved successfully.", dependent));
     }
 
-    // ADMIN: any pinId | USER: own pinId only
     @GetMapping("/member/{pinId}")
     public ResponseEntity<ApiResponse<List<Dependent>>> getDependentsByMember(
             @PathVariable String pinId) {
@@ -54,7 +50,6 @@ public class DependentController {
                 ApiResponse.success("Dependents for member retrieved successfully.", dependents));
     }
 
-    // ADMIN: any | USER: own pinId only
     @PutMapping("/{depId}")
     public ResponseEntity<ApiResponse<Dependent>> updateDependent(
             @PathVariable Integer depId,
@@ -65,7 +60,6 @@ public class DependentController {
                 ApiResponse.success("Dependent updated successfully.", updated));
     }
 
-    // ADMIN only — handled by SecurityConfig
     @DeleteMapping("/{depId}")
     public ResponseEntity<ApiResponse<Void>> deleteDependent(
             @PathVariable Integer depId) {

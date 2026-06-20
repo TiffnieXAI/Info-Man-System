@@ -126,6 +126,7 @@
             animation: scaleNode 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
         }
     </style>
+    <script src="js/api.js"></script>
 </head>
 <body class="min-h-screen flex flex-col">
 <header class="bg-surface shadow-sm docked full-width top-0 z-50 sticky">
@@ -182,7 +183,7 @@
 
 <div class="max-w-3xl mx-auto">
 <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg">
-<form class="space-y-md" action="step3.html">
+<form id="contactForm" class="space-y-md">
 <div class="space-y-sm">
 <label class="block font-label-md text-label-md text-on-surface" for="permanent_address">Permanent Address <span class="text-error">*</span></label>
 <textarea class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect"
@@ -299,6 +300,27 @@ minlength="10">
         });
         primaryBtn.addEventListener('mouseout', () => {
             primaryBtn.style.transform = 'translateY(0px)';
+        });
+
+        // ===== Wire form to sessionStorage + go to step3 =====
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const contact = {
+                permanentHomeAddress: document.getElementById('permanent_address').value,
+                mailAddress: document.getElementById('mailing_address').value || null,
+                homeNumber: document.getElementById('home_number').value || null,
+                mobileNumber: document.getElementById('mobile_number').value,
+                businessNumber: document.getElementById('business_number').value || null,
+                emailAddress: document.getElementById('email_address').value
+            };
+
+            const draft = getRegistrationDraft();
+            draft.contact = contact;
+            saveRegistrationDraft(draft);
+
+            window.location.href = 'step3.html';
         });
     </script>
 </body></html>

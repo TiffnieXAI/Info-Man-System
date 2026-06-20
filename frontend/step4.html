@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PhilHealth Member Portal - Review Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "on-surface-variant": "#3e4a3e",
+                    "on-primary-fixed-variant": "#005323",
+                    "surface-tint": "#006d31",
+                    "on-secondary-container": "#6e5c00",
+                    "outline": "#6e7a6d",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-variant": "#e1e3e4",
+                    "primary-fixed-dim": "#6cdd87",
+                    "inverse-primary": "#6cdd87",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2e3132",
+                    "surface-container-low": "#f3f4f5",
+                    "secondary-fixed": "#ffe16d",
+                    "surface-container": "#edeeef",
+                    "on-tertiary-container": "#f6fff3",
+                    "secondary": "#705d00",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#a4f5b4",
+                    "on-tertiary-fixed-variant": "#005226",
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary-fixed": "#00210b",
+                    "on-surface": "#191c1d",
+                    "on-background": "#191c1d",
+                    "secondary-fixed-dim": "#e9c400",
+                    "primary": "#006b2f",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#88faa0",
+                    "surface-bright": "#f8f9fa",
+                    "secondary-container": "#fcd400",
+                    "primary-container": "#00873e",
+                    "surface-dim": "#d9dadb",
+                    "on-secondary-fixed-variant": "#544600",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#f7fff3",
+                    "on-primary": "#ffffff",
+                    "background": "#f8f9fa",
+                    "on-secondary-fixed": "#221b00",
+                    "tertiary-container": "#36834d",
+                    "tertiary": "#186937",
+                    "surface": "#f8f9fa",
+                    "outline-variant": "#bdcabb",
+                    "on-primary-fixed": "#00210a",
+                    "tertiary-fixed-dim": "#89d899"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+                "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "lg": "48px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "sm": "12px"
+                },
+                "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"]
+                },
+                "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                }
+            },
+        },
+    }
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        vertical-align: middle;
+    }
+    @keyframes fillProgressStep4 {
+        from { width: 66.666%; }
+        to { width: 100%; }
+    }
+    .animate-progress-fill {
+        animation: fillProgressStep4 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes scaleNode {
+        from { transform: scale(0.9); opacity: 0.5; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .animate-node-pop {
+        animation: scaleNode 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .animate-spin { animation: spin 1s linear infinite; }
+</style>
+<script src="js/api.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- Header (matches step1/2/3) -->
+<header class="bg-surface shadow-sm docked full-width top-0 z-50 sticky">
+<nav class="flex justify-between items-center px-margin-desktop w-full h-16 max-w-[1440px] mx-auto">
+<a href="landing.html" class="flex items-center gap-base group hover:opacity-90 transition-opacity">
+    <span class="material-symbols-outlined text-primary text-3xl group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+    <span class="font-headline-md text-headline-md font-bold text-primary">PhilHealth</span>
+</a>
+<div class="hidden md:flex items-center gap-lg">
+    <div class="flex items-center gap-sm">
+        <span class="material-symbols-outlined text-on-surface-variant">language</span>
+        <span class="font-body-md text-body-md text-on-surface-variant">English</span>
+    </div>
+    <div class="flex items-center gap-sm">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+    </div>
+    <div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden">
+        <img alt="Member Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNL_j9Py-KzngQs815BXr4U_JFIMtsor2A4CQwyIaA1El5K1KUV_FZLSbF7I6qRPn9bzhBakZw9Lzox7O4MYq1rC_1cRaiM1FO7IuMwvIrOR0tHa3gDYJjsgIoFMQwUxG0mrWsPsMehfGxFG8AVW7VDp4oerXU43ifGWmwMNrwgF0n-A9DjHn6O7oMrfeWOMp77QT-vc_b5WYoJ4iOwYsUglIQ9qTRDvunSrvuQsV951aYLmNZgHpvfKeZeR1NAEbKDG5aZnfr6tvk"/>
+    </div>
+</div>
+</nav>
+</header>
+
+<main class="flex-grow py-xl px-margin-mobile md:px-0">
+<!-- Page Title -->
+<div class="max-w-[1140px] mx-auto">
+    <div class="text-center mb-lg">
+        <h1 class="font-display-lg text-display-lg text-on-background mb-xs">Become a Member</h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant">Complete the form below to register your account.</p>
+    </div>
+</div>
+
+<!-- Progress Bar (matches step1/2/3 style) -->
+<div class="max-w-3xl mx-auto mb-lg">
+    <div class="relative flex justify-between items-center w-full">
+        <div class="absolute top-1/2 left-0 w-full h-2 bg-surface-container -translate-y-1/2 rounded-full z-0"></div>
+        <div class="absolute top-1/2 left-0 h-2 bg-secondary-container -translate-y-1/2 rounded-full z-0 transition-all animate-progress-fill"></div>
+        <!-- Step 1 -->
+        <div class="relative z-10 flex flex-col items-center gap-xs">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white shadow-sm">
+                <span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 0, 'wght' 700;">check</span>
+            </div>
+            <span class="font-label-md text-label-md text-primary font-bold">Member</span>
+        </div>
+        <!-- Step 2 -->
+        <div class="relative z-10 flex flex-col items-center gap-xs">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white shadow-sm">
+                <span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 0, 'wght' 700;">check</span>
+            </div>
+            <span class="font-label-md text-label-md text-primary font-bold">Contact</span>
+        </div>
+        <!-- Step 3 -->
+        <div class="relative z-10 flex flex-col items-center gap-xs">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white shadow-sm">
+                <span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 0, 'wght' 700;">check</span>
+            </div>
+            <span class="font-label-md text-label-md text-primary font-bold">Dependent</span>
+        </div>
+        <!-- Step 4: Active -->
+        <div class="relative z-10 flex flex-col items-center gap-xs animate-node-pop">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white shadow-md">4</div>
+            <span class="font-label-md text-label-md text-primary font-bold">Review</span>
+        </div>
+    </div>
+</div>
+
+<!-- Review Content -->
+<div class="max-w-3xl mx-auto">
+    <div class="mb-lg">
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Review Your Application</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+            Please review all information declared in your registration profile before final submission. Click edit on any section header if you need to update incorrect values.
+        </p>
+    </div>
+
+    <!-- Error Banner -->
+    <div id="error-banner" class="hidden mb-md p-sm bg-error-container text-on-error-container rounded-lg font-label-sm text-label-sm"></div>
+
+    <div class="flex flex-col gap-md">
+
+        <!-- Member Information Card -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+            <div class="flex justify-between items-center mb-md">
+                <div class="flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-primary">person</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Member Information</h3>
+                </div>
+                <a href="step1.html" class="text-primary hover:underline font-label-md text-label-md flex items-center gap-xs">
+                    <span class="material-symbols-outlined text-sm">edit</span> Edit
+                </a>
+            </div>
+            <div id="personal-summary" class="grid grid-cols-1 md:grid-cols-2 gap-md text-body-md"></div>
+        </div>
+
+        <!-- Contact & Address Card -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+            <div class="flex justify-between items-center mb-md">
+                <div class="flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-primary">contact_mail</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Contact & Address</h3>
+                </div>
+                <a href="step2.html" class="text-primary hover:underline font-label-md text-label-md flex items-center gap-xs">
+                    <span class="material-symbols-outlined text-sm">edit</span> Edit
+                </a>
+            </div>
+            <div id="contact-summary" class="grid grid-cols-1 md:grid-cols-2 gap-md text-body-md"></div>
+        </div>
+
+        <!-- Declared Dependents Card -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+            <div class="flex justify-between items-center mb-md">
+                <div class="flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-primary">group</span>
+                    <h3 id="dependents-title" class="font-headline-md text-headline-md text-on-surface">Declared Dependents (0)</h3>
+                </div>
+                <a href="step3.html" class="text-primary hover:underline font-label-md text-label-md flex items-center gap-xs">
+                    <span class="material-symbols-outlined text-sm">edit</span> Edit
+                </a>
+            </div>
+            <div id="dependents-summary" class="divide-y divide-outline-variant space-y-sm"></div>
+        </div>
+    </div>
+
+    <!-- Certification & Submit -->
+    <div class="space-y-md mt-md">
+        <div class="p-sm bg-surface-container rounded-lg border border-outline-variant">
+            <label class="flex items-start gap-sm cursor-pointer group">
+                <input required type="checkbox" id="terms" class="mt-1 rounded border-outline-variant text-primary focus:ring-primary h-4 w-4">
+                <span class="font-label-sm text-label-sm text-on-surface-variant leading-relaxed select-none">
+                    I hereby certify that all information and dynamic additions provided in this review layout are true, accurate, and complete to the best of my knowledge under the penalty of legal perjury.
+                </span>
+            </label>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-md pt-lg border-t border-outline-variant">
+            <a class="w-full md:w-auto px-md py-sm border border-outline text-on-surface-variant font-bold rounded-lg hover:bg-surface-container-high transition-all active:scale-95 cursor-pointer text-center" href="step3.html">Back</a>
+            <button id="submit-btn" type="button" class="w-full md:w-auto px-md py-sm bg-primary text-on-primary font-bold rounded-lg hover:opacity-90 transition-all active:scale-95 shadow-sm cursor-pointer text-center flex items-center justify-center gap-sm">
+                <span id="submit-icon" class="material-symbols-outlined text-sm">send</span>
+                <span id="submit-label">Submit Application</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Security Footer Note -->
+    <div class="mt-lg flex flex-col items-center gap-sm text-on-surface-variant">
+        <div class="flex items-center gap-xs">
+            <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+            <span class="font-label-md text-label-md font-bold">Secure Data Transmission</span>
+        </div>
+        <p class="font-label-sm text-label-sm text-center">Your data is encrypted using 256-bit SSL protocols. PhilHealth ensures the privacy and confidentiality of your information in compliance with the Data Privacy Act of 2012.</p>
+    </div>
+</div>
+</main>
+
+<!-- Footer (matches step1/2/3) -->
+<footer class="bg-surface-container border-t border-outline-variant w-full py-lg">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-[1140px] mx-auto gap-md">
+    <div class="flex flex-col items-center md:items-start gap-xs">
+        <a href="landing.html" class="flex items-center gap-base">
+            <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+            <span class="font-headline-sm text-headline-sm text-primary font-bold">PhilHealth Portal</span>
+        </a>
+        <p class="font-label-sm text-label-sm text-on-surface-variant">© 2026 PhilHealth. All rights reserved.</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-lg mt-md md:mt-0">
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Privacy Policy</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Terms of Service</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Contact Us</a>
+    </div>
+</div>
+</footer>
+
+<!-- ===== Review Data Population + Backend Submission ===== -->
+<script>
+    const draft = getRegistrationDraft();
+
+    // Guard: if no member data, send back to step 1
+    if (!draft.member || !draft.member.pinId) {
+        window.location.href = 'step1.html';
+    }
+
+    // Helper: render a labelled field
+    function field(label, value) {
+        return `<div>
+            <span class="block text-label-sm text-on-surface-variant font-bold">${label}</span>
+            <span class="text-on-surface">${value || '—'}</span>
+        </div>`;
+    }
+
+    // ── Personal Information ──────────────────────────────────────
+    const m = draft.member;
+    const sexLabel    = m.sex === 'M' ? 'Male' : m.sex === 'F' ? 'Female' : (m.sex || '—');
+    const civilMap    = { S: 'Single', M: 'Married', A: 'Annulled', LS: 'Legally Separated', W: 'Widow/er' };
+    const citizenMap  = { F: 'Filipino', FN: 'Foreign National', DC: 'Dual Citizen' };
+    const contribLabel = m.directContributor
+        ? `Direct — ${m.directContributor}`
+        : m.indirectContributor
+        ? `Indirect — ${m.indirectContributor}`
+        : null;
+
+    document.getElementById('personal-summary').innerHTML = [
+        field('PIN ID',                m.pinId),
+        field('Full Name',             m.memberName),
+        field("Mother's Maiden Name",  m.memberMotherName),
+        field('Spouse Name',           m.memberSpouseName),
+        field('Date of Birth',         m.dateOfBirth),
+        field('Place of Birth',        m.birthPlace),
+        field('Sex',                   sexLabel),
+        field('Civil Status',          civilMap[m.civilStatus] || m.civilStatus),
+        field('Citizenship',           citizenMap[m.citizenship] || m.citizenship),
+        field('PhilSys ID Number',     m.philSysIdNum),
+        field('Tax Identification No.', m.tinNumber),
+        field('Profession',            m.profession),
+        field('Monthly Income',        m.income ? `₱${Number(m.income).toLocaleString()}` : null),
+        field('Konsulta Provider',     m.konsultaProvider),
+        field('Contributor Type',      contribLabel),
+    ].join('');
+
+    // ── Contact & Address ─────────────────────────────────────────
+    const c = draft.contact || {};
+    document.getElementById('contact-summary').innerHTML = [
+        field('Mobile Number',       c.mobileNumber),
+        field('Email Address',       c.emailAddress),
+        field('Home Number',         c.homeNumber),
+        field('Business Number',     c.businessNumber),
+        field('Permanent Address',   c.permanentHomeAddress),
+        field('Mailing Address',     c.mailAddress),
+    ].join('');
+
+    // ── Dependents ────────────────────────────────────────────────
+    const deps = draft.dependents || [];
+    document.getElementById('dependents-title').textContent = `Declared Dependents (${deps.length})`;
+
+    const depContainer = document.getElementById('dependents-summary');
+    if (deps.length === 0) {
+        depContainer.innerHTML = '<p class="text-on-surface-variant font-body-md py-sm">No dependents added.</p>';
+    } else {
+        depContainer.innerHTML = deps.map((d) => `
+            <div class="pt-2 grid grid-cols-1 md:grid-cols-3 gap-sm text-body-md">
+                ${field('Dependent Name', d.dependentName)}
+                ${field('Relationship',   d.relationshipToMember)}
+                ${field('Date of Birth',  d.depDateOfBirth)}
+            </div>`
+        ).join('');
+    }
+
+    // ── Submit to Backend ─────────────────────────────────────────
+    const submitBtn   = document.getElementById('submit-btn');
+    const submitIcon  = document.getElementById('submit-icon');
+    const submitLabel = document.getElementById('submit-label');
+    const errorBanner = document.getElementById('error-banner');
+    const termsBox    = document.getElementById('terms');
+
+    submitBtn.addEventListener('click', async () => {
+        errorBanner.classList.add('hidden');
+
+        if (!termsBox.checked) {
+            errorBanner.textContent = 'Please certify that the information provided is true and correct before submitting.';
+            errorBanner.classList.remove('hidden');
+            return;
+        }
+
+        // Loading state
+        submitBtn.disabled = true;
+        submitIcon.classList.add('animate-spin');
+        submitIcon.textContent = 'progress_activity';
+        submitLabel.textContent = 'Submitting...';
+
+        try {
+            // POST /api/registration  (member + contact in one call)
+            await submitRegistration(draft.member, draft.contact);
+
+            // POST /api/dependents  (one per dependent)
+            for (const dep of deps) {
+                await submitDependent({ ...dep, pinId: draft.member.pinId });
+            }
+
+            // Success
+            clearRegistrationDraft();
+            submitIcon.classList.remove('animate-spin');
+            submitIcon.textContent = 'check_circle';
+            submitLabel.textContent = 'Success!';
+
+            alert('Registration successful!\nYour PhilHealth PIN ID is: ' + draft.member.pinId);
+            window.location.href = 'landing.html';
+
+        } catch (err) {
+            errorBanner.textContent = err.message || 'Something went wrong. Please try again.';
+            errorBanner.classList.remove('hidden');
+            submitBtn.disabled = false;
+            submitIcon.classList.remove('animate-spin');
+            submitIcon.textContent = 'send';
+            submitLabel.textContent = 'Submit Application';
+        }
+    });
+</script>
+
+</body>
+</html>

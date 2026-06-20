@@ -17,7 +17,6 @@ public class ContactInfoController {
 
     private final ContactInfoService contactInfoService;
 
-    // ADMIN only — handled by SecurityConfig
     @PostMapping("/{pinId}")
     public ResponseEntity<ApiResponse<ContactInfo>> createContactInfo(
             @PathVariable String pinId,
@@ -27,7 +26,6 @@ public class ContactInfoController {
                 .body(ApiResponse.success("Contact info created successfully.", created));
     }
 
-    // ADMIN: any pinId | USER: own pinId only
     @GetMapping("/{pinId}")
     public ResponseEntity<ApiResponse<ContactInfo>> getContactInfo(
             @PathVariable String pinId) {
@@ -36,7 +34,6 @@ public class ContactInfoController {
                 ApiResponse.success("Contact info retrieved successfully.", contactInfo));
     }
 
-    // ADMIN: any pinId | USER: own pinId only
     @PutMapping("/{pinId}")
     public ResponseEntity<ApiResponse<ContactInfo>> updateContactInfo(
             @PathVariable String pinId,
@@ -46,7 +43,6 @@ public class ContactInfoController {
                 ApiResponse.success("Contact info updated successfully.", updated));
     }
 
-    // ADMIN only — handled by SecurityConfig
     @DeleteMapping("/{pinId}")
     public ResponseEntity<ApiResponse<Void>> deleteContactInfo(
             @PathVariable String pinId) {

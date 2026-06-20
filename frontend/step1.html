@@ -1,357 +1,474 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html class="light" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>PhilHealth Portal - Member Registration</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-error-container": "#93000a",
-                    "surface-container": "#edeeef",
-                    "tertiary-fixed-dim": "#89d899",
-                    "inverse-surface": "#2e3132",
-                    "background": "#f8f9fa",
-                    "on-secondary-container": "#6e5c00",
-                    "on-tertiary-container": "#f6fff3",
-                    "surface-container-highest": "#e1e3e4",
-                    "secondary": "#705d00",
-                    "surface-container-low": "#f3f4f5",
-                    "primary-container": "#00873e",
-                    "primary": "#006b2f",
-                    "surface-container-high": "#e7e8e9",
-                    "tertiary": "#186937",
-                    "error": "#ba1a1a",
-                    "inverse-on-surface": "#f0f1f2",
-                    "on-background": "#191c1d",
-                    "secondary-fixed-dim": "#e9c400",
-                    "on-secondary": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "surface-container-lowest": "#ffffff",
-                    "primary-fixed": "#88faa0",
-                    "on-error": "#ffffff",
-                    "tertiary-fixed": "#a4f5b4",
-                    "on-primary-container": "#f7fff3",
-                    "on-surface": "#191c1d",
-                    "surface": "#f8f9fa",
-                    "surface-bright": "#f8f9fa",
-                    "on-secondary-fixed": "#221b00",
-                    "outline-variant": "#bdcabb",
-                    "on-primary-fixed-variant": "#005323",
-                    "on-secondary-fixed-variant": "#544600",
-                    "on-tertiary-fixed": "#00210b",
-                    "on-primary": "#ffffff",
-                    "outline": "#6e7a6d",
-                    "error-container": "#ffdad6",
-                    "on-primary-fixed": "#00210a",
-                    "tertiary-container": "#36834d",
-                    "surface-tint": "#006d31",
-                    "surface-dim": "#d9dadb",
-                    "surface-variant": "#e1e3e4",
-                    "on-surface-variant": "#3e4a3e",
-                    "inverse-primary": "#6cdd87",
-                    "on-tertiary-fixed-variant": "#005226",
-                    "secondary-container": "#fcd400",
-                    "primary-fixed-dim": "#6cdd87",
-                    "secondary-fixed": "#ffe16d"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "base": "8px",
-                    "xl": "80px",
-                    "md": "24px",
-                    "margin-desktop": "64px",
-                    "gutter": "24px",
-                    "sm": "12px",
-                    "xs": "4px",
-                    "lg": "48px",
-                    "margin-mobile": "16px"
-            },
-            "fontFamily": {
-                    "headline-lg": ["Inter"],
-                    "label-md": ["Inter"],
-                    "label-sm": ["Inter"],
-                    "headline-md": ["Inter"],
-                    "body-md": ["Inter"],
-                    "headline-lg-mobile": ["Inter"],
-                    "body-lg": ["Inter"],
-                    "display-lg": ["Inter"]
-            },
-            "fontSize": {
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
-                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-            }
-          },
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-error-container": "#93000a","surface-container": "#edeeef","tertiary-fixed-dim": "#89d899",
+          "inverse-surface": "#2e3132","background": "#f8f9fa","on-secondary-container": "#6e5c00",
+          "on-tertiary-container": "#f6fff3","surface-container-highest": "#e1e3e4","secondary": "#705d00",
+          "surface-container-low": "#f3f4f5","primary-container": "#00873e","primary": "#006b2f",
+          "surface-container-high": "#e7e8e9","tertiary": "#186937","error": "#ba1a1a",
+          "inverse-on-surface": "#f0f1f2","on-background": "#191c1d","secondary-fixed-dim": "#e9c400",
+          "on-secondary": "#ffffff","on-tertiary": "#ffffff","surface-container-lowest": "#ffffff",
+          "primary-fixed": "#88faa0","on-error": "#ffffff","tertiary-fixed": "#a4f5b4",
+          "on-primary-container": "#f7fff3","on-surface": "#191c1d","surface": "#f8f9fa",
+          "surface-bright": "#f8f9fa","on-secondary-fixed": "#221b00","outline-variant": "#bdcabb",
+          "on-primary-fixed-variant": "#005323","on-secondary-fixed-variant": "#544600",
+          "on-tertiary-fixed": "#00210b","on-primary": "#ffffff","outline": "#6e7a6d",
+          "error-container": "#ffdad6","on-primary-fixed": "#00210a","tertiary-container": "#36834d",
+          "surface-tint": "#006d31","surface-dim": "#d9dadb","surface-variant": "#e1e3e4",
+          "on-surface-variant": "#3e4a3e","inverse-primary": "#6cdd87","on-tertiary-fixed-variant": "#005226",
+          "secondary-container": "#fcd400","primary-fixed-dim": "#6cdd87","secondary-fixed": "#ffe16d"
         },
-      }
-    </script>
+        "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
+        "spacing": {
+          "base": "8px","xl": "80px","md": "24px","margin-desktop": "64px",
+          "gutter": "24px","sm": "12px","xs": "4px","lg": "48px","margin-mobile": "16px"
+        },
+        "fontFamily": {
+          "headline-lg": ["Inter"],"label-md": ["Inter"],"label-sm": ["Inter"],
+          "headline-md": ["Inter"],"body-md": ["Inter"],"headline-lg-mobile": ["Inter"],
+          "body-lg": ["Inter"],"display-lg": ["Inter"]
+        },
+        "fontSize": {
+          "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+          "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      },
+    },
+  }
+</script>
 <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Inter', sans-serif;
-            color: #191c1d;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .form-shadow {
-            box-shadow: 0px 4px 20px rgba(0,0,0,0.04);
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #006b2f !important;
-            box-shadow: 0 0 0 2px rgba(0, 107, 47, 0.1);
-        }
-    </style>
+  body { background-color: #f8f9fa; font-family: 'Inter', sans-serif; color: #191c1d; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .form-shadow { box-shadow: 0px 4px 20px rgba(0,0,0,0.04); }
+  input:focus, select:focus {
+    outline: none;
+    border-color: #006b2f !important;
+    box-shadow: 0 0 0 2px rgba(0, 107, 47, 0.1);
+  }
+  select:disabled { opacity: 0.5; cursor: not-allowed; }
+</style>
+<script src="js/api.js"></script>
 </head>
 <body class="min-h-screen flex flex-col">
+
+<!-- Header -->
 <header class="bg-surface shadow-sm docked full-width top-0 z-50 sticky">
 <nav class="flex justify-between items-center px-margin-desktop w-full h-16 max-w-[1440px] mx-auto">
-<a href="landing.html" class="flex items-center gap-base group hover:opacity-90 transition-opacity">
+  <a href="landing.html" class="flex items-center gap-base group hover:opacity-90 transition-opacity">
     <span class="material-symbols-outlined text-primary text-3xl group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
     <span class="font-headline-md text-headline-md font-bold text-primary">PhilHealth</span>
-</a>
-<div class="hidden md:flex items-center gap-lg">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="language">language</span>
-<span class="font-body-md text-body-md text-on-surface-variant">English</span>
-</div>
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
-</div>
-<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden">
-<img alt="Member Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_4jPennmkpo-vY78eUnZKb1_j2eymGNhdgz630--vXh_0bzIEV6oUasWZ-OKyyph4LGfZC91COyzv2PbbW4kQfAhCxiMuhXJ75MMjtvBJQfvZEuTGsUgebJc0g3bFEoHtW6KZE5mYheOr-7SYr-3-3dsZ1UVs2aw12-XBsJBxqCw8Ty0-Hf9_WdTc7HwFcCuECAbwekXuQEKrwr1-BmO64m2SVUTMlZVAGtxNhCyAKsB_XQhvyej1z4doRGcq3lb116tdgEqbH_-6"/>
-</div>
-</div>
+  </a>
+  <div class="hidden md:flex items-center gap-lg">
+    <div class="flex items-center gap-sm">
+      <span class="material-symbols-outlined text-on-surface-variant">language</span>
+      <span class="font-body-md text-body-md text-on-surface-variant">English</span>
+    </div>
+    <div class="flex items-center gap-sm">
+      <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+    </div>
+    <div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden">
+      <img alt="Member Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_4jPennmkpo-vY78eUnZKb1_j2eymGNhdgz630--vXh_0bzIEV6oUasWZ-OKyyph4LGfZC91COyzv2PbbW4kQfAhCxiMuhXJ75MMjtvBJQfvZEuTGsUgebJc0g3bFEoHtW6KZE5mYheOr-7SYr-3-3dsZ1UVs2aw12-XBsJBxqCw8Ty0-Hf9_WdTc7HwFcCuECAbwekXuQEKrwr1-BmO64m2SVUTMlZVAGtxNhCyAKsB_XQhvyej1z4doRGcq3lb116tdgEqbH_-6"/>
+    </div>
+  </div>
 </nav>
 </header>
+
 <main class="flex-grow py-xl px-margin-mobile md:px-0">
 <div class="max-w-[1140px] mx-auto">
-<div class="text-center mb-lg">
-<h1 class="font-display-lg text-display-lg text-on-background mb-xs">Become a Member</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant">Complete the form below to register your account.</p>
-</div>
-<div class="max-w-3xl mx-auto mb-lg">
-<div class="relative flex justify-between items-center w-full"><div class="absolute top-1/2 left-0 w-full h-2 bg-surface-container -translate-y-1/2 rounded-full z-0"></div>
-<div class="absolute top-1/2 left-0 w-1/4 h-2 bg-secondary-container -translate-y-1/2 rounded-full z-0 transition-all duration-500"></div>
-<div class="relative z-10 flex flex-col items-center gap-xs">
-<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white">1</div>
-<span class="font-label-md text-label-md text-primary font-bold">Member</span>
-</div>
-<div class="relative z-10 flex flex-col items-center gap-xs">
-<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold ring-4 ring-white">2</div>
-<span class="font-label-md text-label-md text-on-surface-variant">Contact</span>
-</div>
-<div class="relative z-10 flex flex-col items-center gap-xs">
-<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold ring-4 ring-white">3</div>
-<span class="font-label-md text-label-md text-on-surface-variant">Dependent</span>
-</div>
-<div class="relative z-10 flex flex-col items-center gap-xs">
-<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold ring-4 ring-white">4</div>
-<span class="font-label-md text-label-md text-on-surface-variant">Review</span>
-</div></div>
-</div>
-<div class="bg-white rounded-xl form-shadow p-md md:p-lg">
-<form id="memberForm" class="space-y-lg" action="step2.html">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Full Name <span class="text-error">*</span></label><div class="flex gap-md mt-xs"><label class="flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/> No Middle Name</label><label class="flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/> Mononym</label></div>
-<input
-    required
-    minlength="3"
-    class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all"
-    placeholder="e.g. Juan De La Cruz"
-    type="text"/>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Mother's Maiden Name <span class="text-error">*</span></label>
-<input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" placeholder="Surname, Given Name, Middle Name" required type="text"/>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Spouse Name (If applicable)</label>
-<input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" placeholder="Full legal name" type="text"/>
-</div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">PhilSys ID Number <span class="text-error">*</span></label><input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all"
-       id="philsys-id"
-       placeholder="0000-0000-0000-0000"
-       type="text"
-       required
-       pattern="\d{4}-\d{4}-\d{4}-\d{4}"
-       maxlength="19"/></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">PIN Number (12-Digits) <span class="text-error">*</span></label><input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all"
-       id="pin-number"
-       placeholder="00-000000000-0"
-       type="text"
-       required
-       pattern="\d{2}-\d{9}-\d"
-       maxlength="14"/>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Date of Birth <span class="text-error">*</span></label>
-<input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" required type="date"/>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Place of Birth<span class="text-error">*</span></label>
-<input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" placeholder="City/Municipality, Province" required type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-gutter">
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Sex <span class="text-error">*</span></label>
-<select class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" required> 
-<option value="">Select</option>
-<option value="male">Male</option>
-<option value="female">Female</option>
-</select>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Civil Status <span class="text-error">*</span></label>
-<select class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" required>
-<option value="">Select</option>
-<option value="single">Single</option>
-<option value="married">Married</option>
-<option value="widowed">Widowed</option>
-<option value="separated">Separated</option>
-</select>
-</div>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Citizenship <span class="text-error">*</span></label>
-<input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all"
-       id="citizenship"
-       placeholder="e.g. Filipino"
-       type="text"
-       required/>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">TIN Number (12-Digits)<span class="text-error">*</span></label>
-<input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all"
-       id="tin-number"
-       placeholder="000-000-000-000"
-       type="text"
-       required
-       pattern="\d{3}-\d{3}-\d{3}-\d{3}"
-       maxlength="15"/>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Profession<span class="text-error">*</span></label>
-<input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" placeholder="Current Occupation" required type="text"/>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-sm text-label-sm text-on-surface-variant">Monthly Income (PHP) <span class="text-error">*</span></label>
-<input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all"
-       placeholder="0.00"
-       type="number"
-       required
-       min="1"/>
-</div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Konsulta Provider <span class="text-error">*</span></label><input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" placeholder="Name of Health Center/Clinic" required type="text"/></div>
-<div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Contributor Type <span class="text-error">*</span></label><select class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" required=""><option value="">Select Type</option><option value="direct">Direct Contributor</option><option value="indirect">Indirect Contributor</option></select></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Specific Contributor Category <span class="text-error">*</span> </label><input class="bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" placeholder="e.g. Employed, Senior Citizen, PWD" required="" type="text"/></div></div>
-<div class="mt-lg">
-<label class="font-label-sm text-label-sm text-on-surface-variant mb-xs block">Proof of Income <span class="text-error">*</span></label>
-<select class="w-full bg-surface p-sm rounded-lg border-outline-variant font-body-md text-body-md transition-all" required>
-<option value="">Select Document Type</option>
-<option value="srb">Seafarer's Record Book (SRB)</option>
-<option value="coe">Certificate of Employment (COE) with Compensation</option>
-<option value="itr">Latest Income Tax Return (ITR - BIR Form 2316)</option>
-<option value="afs">Audited Financial Statement (AFS)</option>
-<option value="passbook">Bank Passbook/Statement</option>
-<option value="payslip">Payslip (Last 3 Months)</option>
-<option value="business_reg">Official Receipt of Business Registration (DTI/SEC)</option>
-</select>
-</div>
-<div class="mb-sm"><p class="font-label-sm text-label-sm text-outline"><span class="text-error">*</span> Denotes required field</p></div><div class="pt-lg flex justify-between items-center border-t border-outline-variant">
-<a class="px-lg py-sm font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg flex items-center gap-xs" href="landing.html">
-<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
-                            Cancel
-                        </a>
-<div class="flex gap-md">
-<button type="submit" class="bg-primary text-white px-xl py-sm rounded-lg font-label-md text-label-md shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-xs" href="step2.html">
-                                Continue to Contact
-                                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
-</a>
-</div>
-</div>
-</form>
-</div>
-<div class="mt-lg text-center max-w-2xl mx-auto">
-<div class="flex items-center justify-center gap-xs text-on-surface-variant mb-sm">
-<span class="material-symbols-outlined text-sm" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Secure Data Transmission</span>
-</div>
-<p class="font-label-sm text-label-sm text-outline">Your personal information is protected under the Data Privacy Act of 2012. We ensure all data collected is handled with the highest security standards for your health insurance needs.</p>
-</div>
+
+  <!-- Page Title -->
+  <div class="text-center mb-lg">
+    <h1 class="font-display-lg text-display-lg text-on-background mb-xs">Become a Member</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant">Complete the form below to register your account.</p>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="max-w-3xl mx-auto mb-lg">
+    <div class="relative flex justify-between items-center w-full">
+      <div class="absolute top-1/2 left-0 w-full h-2 bg-surface-container -translate-y-1/2 rounded-full z-0"></div>
+      <div class="absolute top-1/2 left-0 w-1/4 h-2 bg-secondary-container -translate-y-1/2 rounded-full z-0 transition-all duration-500"></div>
+      <div class="relative z-10 flex flex-col items-center gap-xs">
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white">1</div>
+        <span class="font-label-md text-label-md text-primary font-bold">Member</span>
+      </div>
+      <div class="relative z-10 flex flex-col items-center gap-xs">
+        <div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold ring-4 ring-white">2</div>
+        <span class="font-label-md text-label-md text-on-surface-variant">Contact</span>
+      </div>
+      <div class="relative z-10 flex flex-col items-center gap-xs">
+        <div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold ring-4 ring-white">3</div>
+        <span class="font-label-md text-label-md text-on-surface-variant">Dependent</span>
+      </div>
+      <div class="relative z-10 flex flex-col items-center gap-xs">
+        <div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold ring-4 ring-white">4</div>
+        <span class="font-label-md text-label-md text-on-surface-variant">Review</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Card -->
+  <div class="bg-white rounded-xl form-shadow p-md md:p-lg max-w-3xl mx-auto">
+  <form id="memberForm" class="space-y-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+
+      <!-- Full Name -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Full Name <span class="text-error">*</span></label>
+        <div class="flex gap-md mt-xs">
+          <label class="flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant">
+            <input id="no-middle-name" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/> No Middle Name
+          </label>
+          <label class="flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant">
+            <input id="mononym" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/> Mononym
+          </label>
+        </div>
+        <input id="member-name" name="member_name" required minlength="3"
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="e.g. Juan De La Cruz" type="text"/>
+      </div>
+
+      <!-- Mother's Maiden Name -->
+        <div class="flex flex-col gap-xs">
+            <label class="font-label-sm text-label-sm text-on-surface-variant">Mother's Maiden Name <span class="text-error">*</span></label>
+            <div class="flex gap-md mt-xs invisible select-none" aria-hidden="true">
+                <label class="flex items-center gap-xs font-label-sm text-label-sm">
+                    <input type="checkbox" disabled/> placeholder
+                </label>
+            </div>
+            <input id="mother-name" name="mother_name" required
+            class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+            placeholder="Surname, Given Name, Middle Name" type="text"/>
+        </div>
+
+      <!-- Spouse Name -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Spouse Name (If applicable)</label>
+        <input id="spouse-name" name="spouse_name"
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="Full legal name" type="text"/>
+      </div>
+
+      <!-- PhilSys ID -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">PhilSys ID Number <span class="text-error">*</span></label>
+        <input id="philsys-id" name="philsys_id" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="0000-0000-0000-0000" type="text" pattern="\d{4}-\d{4}-\d{4}-\d{4}" maxlength="19"/>
+      </div>
+
+      <!-- PIN Number -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">PIN Number (12-Digits) <span class="text-error">*</span></label>
+        <input id="pin-number" name="pin_number" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="00-000000000-0" type="text" pattern="\d{2}-\d{9}-\d" maxlength="14"/>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Date of Birth <span class="text-error">*</span></label>
+        <input id="date-of-birth" name="date_of_birth" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          type="date"/>
+      </div>
+
+      <!-- Place of Birth -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Place of Birth <span class="text-error">*</span></label>
+        <input id="birth-place" name="birth_place" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="City/Municipality, Province" type="text"/>
+      </div>
+
+      <!-- Sex -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Sex <span class="text-error">*</span></label>
+        <select id="sex" name="sex" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all">
+          <option value="">Select</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+      </div>
+
+      <!-- Civil Status -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Civil Status <span class="text-error">*</span></label>
+        <select id="civil-status" name="civil_status" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all">
+          <option value="">Select</option>
+          <option value="S">Single</option>
+          <option value="M">Married</option>
+          <option value="W">Widow/er</option>
+          <option value="LS">Legally Separated</option>
+        </select>
+      </div>
+
+      <!-- Citizenship -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Citizenship <span class="text-error">*</span></label>
+        <select id="citizenship" name="citizenship" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all">
+          <option value="">Select</option>
+          <option value="F">Filipino</option>
+          <option value="FN">Foreign National</option>
+          <option value="DC">Dual Citizen</option>
+        </select>
+      </div>
+
+      <!-- TIN Number -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">TIN Number <span class="text-error">*</span></label>
+        <input id="tin-number" name="tin_number" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="000-000-000-000" type="text" pattern="\d{3}-\d{3}-\d{3}-\d{3}" maxlength="15"/>
+      </div>
+
+      <!-- Profession -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Profession <span class="text-error">*</span></label>
+        <input id="profession" name="profession" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="Current Occupation" type="text"/>
+      </div>
+
+      <!-- Monthly Income -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Monthly Income (PHP) <span class="text-error">*</span></label>
+        <input id="income" name="income" required min="1"
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="0.00" type="number"/>
+      </div>
+
+      <!-- Konsulta Provider -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Konsulta Provider <span class="text-error">*</span></label>
+        <input id="konsulta-provider" name="konsulta_provider" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all"
+          placeholder="Name of Health Center/Clinic" type="text"/>
+      </div>
+
+      <!-- Contributor Type -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Contributor Type <span class="text-error">*</span></label>
+        <select id="contributor-type" name="contributor_type" required
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all">
+          <option value="">Select Type</option>
+          <option value="direct">Direct Contributor</option>
+          <option value="indirect">Indirect Contributor</option>
+        </select>
+      </div>
+
+      <!-- Contributor Category (dynamic) -->
+      <div class="flex flex-col gap-xs">
+        <label class="font-label-sm text-label-sm text-on-surface-variant">Contributor Category <span class="text-error">*</span></label>
+        <select id="contributor-category" name="contributor_category" required disabled
+          class="bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all">
+          <option value="">Select Contributor Type first</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- Proof of Income (full width) -->
+    <div class="flex flex-col gap-xs">
+      <label class="font-label-sm text-label-sm text-on-surface-variant">Proof of Income <span class="text-error">*</span></label>
+      <select id="proof-of-income" name="proof_of_income" required
+        class="w-full bg-surface p-sm rounded-lg border border-outline-variant font-body-md text-body-md transition-all">
+        <option value="">Select Document Type</option>
+        <option value="SRB">Seafarer's Record Book (SRB)</option>
+        <option value="COE">Certificate of Employment (COE) with Compensation</option>
+        <option value="ITR">Latest Income Tax Return (ITR - BIR Form 2316)</option>
+        <option value="AFS">Audited Financial Statement (AFS)</option>
+        <option value="PASSBOOK">Bank Passbook/Statement</option>
+        <option value="PAYSLIP">Payslip (Last 3 Months)</option>
+        <option value="BUSSREG">Official Receipt of Business Registration (DTI/SEC)</option>
+      </select>
+    </div>
+
+    <p class="font-label-sm text-label-sm text-outline"><span class="text-error">*</span> Denotes required field</p>
+
+    <!-- Form Actions -->
+    <div class="pt-lg flex justify-between items-center border-t border-outline-variant">
+      <a class="px-lg py-sm font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg flex items-center gap-xs" href="landing.html">
+        <span class="material-symbols-outlined text-sm">close</span> Cancel
+      </a>
+      <button type="submit" class="bg-primary text-white px-xl py-sm rounded-lg font-label-md text-label-md shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-xs">
+        Continue to Contact
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </button>
+    </div>
+
+  </form>
+  </div>
+
+  <!-- Security Note -->
+  <div class="mt-lg text-center max-w-2xl mx-auto">
+    <div class="flex items-center justify-center gap-xs text-on-surface-variant mb-sm">
+      <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">lock</span>
+      <span class="font-label-sm text-label-sm uppercase tracking-wider">Secure Data Transmission</span>
+    </div>
+    <p class="font-label-sm text-label-sm text-outline">Your personal information is protected under the Data Privacy Act of 2012. We ensure all data collected is handled with the highest security standards for your health insurance needs.</p>
+  </div>
+
 </div>
 </main>
+
+<!-- Footer -->
 <footer class="w-full py-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center bg-surface-container border-t border-outline-variant">
-<div class="flex flex-col items-center md:items-start gap-xs">
-<a href="landing.html" class="flex flex-col items-center md:items-start gap-xs group hover:opacity-90 transition-opacity">
-    <div class="flex items-center gap-base">
-        <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
-        <span class="font-headline-sm text-headline-sm text-primary font-bold">PhilHealth</span>
-    </div>
-</a>
-<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 PhilHealth. All rights reserved.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-lg mt-md md:mt-0">
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Contact Us</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Quick Links</a>
-</div>
+  <div class="flex flex-col items-center md:items-start gap-xs">
+    <a href="landing.html" class="flex items-center gap-base group hover:opacity-90 transition-opacity">
+      <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+      <span class="font-label-sm text-label-sm text-primary font-bold">PhilHealth</span>
+    </a>
+    <p class="font-label-sm text-label-sm text-on-surface-variant">© 2026 PhilHealth. All rights reserved.</p>
+  </div>
+  <div class="flex flex-wrap justify-center gap-lg mt-md md:mt-0">
+    <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Contact Us</a>
+    <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Privacy Policy</a>
+    <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Terms of Service</a>
+  </div>
 </footer>
-<script>
-        // Simple micro-interaction for form inputs
-        const inputs = document.querySelectorAll('input, select');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                const label = input.previousElementSibling;
-                if (label && label.tagName === 'LABEL') {
-                    label.style.color = '#006b2f';
-                }
-            });
-            input.addEventListener('blur', () => {
-                const label = input.previousElementSibling;
-                if (label && label.tagName === 'LABEL') {
-                    label.style.color = '';
-                }
-            });
-        });
-    </script>
-<script>
-        function maskInput(elementId, pattern) {
-            const input = document.getElementById(elementId);
-            input.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                let formattedValue = '';
-                let valueIndex = 0;
 
-                for (let i = 0; i < pattern.length && valueIndex < value.length; i++) {
-                    if (pattern[i] === '0') {
-                        formattedValue += value[valueIndex];
-                        valueIndex++;
-                    } else {
-                        formattedValue += pattern[i];
-                    }
-                }
-                e.target.value = formattedValue;
-            });
-        }
+<script>
+  // ── Input masking ─────────────────────────────────────────────
+  function maskInput(elementId, pattern) {
+    const input = document.getElementById(elementId);
+    input.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      let formatted = '';
+      let vi = 0;
+      for (let i = 0; i < pattern.length && vi < value.length; i++) {
+        formatted += pattern[i] === '0' ? value[vi++] : pattern[i];
+      }
+      e.target.value = formatted;
+    });
+  }
+  maskInput('philsys-id', '0000-0000-0000-0000');
+  maskInput('pin-number',  '00-000000000-0');
+  maskInput('tin-number',  '000-000-000-000');
 
-        maskInput('philsys-id', '0000-0000-0000-0000');
-        maskInput('pin-number', '00-000000000-0');
-        maskInput('tin-number', '000-000-000-000');
-    </script></body></html>
+  // ── Dynamic contributor category dropdown ─────────────────────
+  const directOptions = [
+    { value: "EP",  label: "Employed Private" },
+    { value: "EG",  label: "Employed Government" },
+    { value: "PP",  label: "Professional Practitioner" },
+    { value: "SEI", label: "Self-Earning Individual" },
+    { value: "SP",  label: "Sole Proprietor" },
+    { value: "GES", label: "Group Enrollment Scheme" },
+    { value: "K",   label: "Kasambahay" },
+    { value: "FD",  label: "Family Driver" },
+    { value: "LMW", label: "Land-Based Migrant Worker" },
+    { value: "SMW", label: "Sea-Based Migrant Worker" },
+    { value: "LM",  label: "Lifetime Member" },
+    { value: "FDC", label: "Filipinos with Dual Citizenship" },
+    { value: "FN",  label: "Foreign National" },
+  ];
+
+  const indirectOptions = [
+    { value: "L",   label: "Listahanan" },
+    { value: "FP",  label: "4Ps/MCCT" },
+    { value: "SC",  label: "Senior Citizen" },
+    { value: "P",   label: "PAMANA" },
+    { value: "KK",  label: "KIA/KIPO" },
+    { value: "BN",  label: "Bangsamoro/Normalization" },
+    { value: "LGU", label: "LGU-Sponsored" },
+    { value: "NGA", label: "NGA-Sponsored" },
+    { value: "PRI", label: "Private-Sponsored" },
+    { value: "PWD", label: "Person with Disability" },
+  ];
+
+  const typeSelect     = document.getElementById('contributor-type');
+  const categorySelect = document.getElementById('contributor-category');
+
+  typeSelect.addEventListener('change', () => {
+    const options = typeSelect.value === 'direct'   ? directOptions
+                  : typeSelect.value === 'indirect' ? indirectOptions
+                  : [];
+
+    categorySelect.innerHTML = '<option value="">Select Category</option>';
+
+    if (options.length > 0) {
+      options.forEach(opt => {
+        const el = document.createElement('option');
+        el.value = opt.value;
+        el.textContent = opt.label;
+        categorySelect.appendChild(el);
+      });
+      categorySelect.disabled = false;
+    } else {
+      categorySelect.innerHTML = '<option value="">Select Contributor Type first</option>';
+      categorySelect.disabled = true;
+    }
+  });
+
+  // ── Label highlight on focus ──────────────────────────────────
+  document.querySelectorAll('input, select').forEach(input => {
+    input.addEventListener('focus', () => {
+      const label = input.previousElementSibling;
+      if (label && label.tagName === 'LABEL') label.style.color = '#006b2f';
+    });
+    input.addEventListener('blur', () => {
+      const label = input.previousElementSibling;
+      if (label && label.tagName === 'LABEL') label.style.color = '';
+    });
+  });
+
+  // ── Save to sessionStorage and go to step 2 ──────────────────
+  document.getElementById('memberForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const pinId            = document.getElementById('pin-number').value.replace(/\D/g, '');
+    const contributorType  = document.getElementById('contributor-type').value;
+    const contributorCat   = document.getElementById('contributor-category').value;
+
+    const member = {
+      pinId:               pinId,
+      purpose:             "REGISTRATION",
+      konsultaProvider:    document.getElementById('konsulta-provider').value,
+      memberName:          document.getElementById('member-name').value,
+      memberMotherName:    document.getElementById('mother-name').value,
+      memberSpouseName:    document.getElementById('spouse-name').value || null,
+      dateOfBirth:         document.getElementById('date-of-birth').value,
+      birthPlace:          document.getElementById('birth-place').value,
+      sex:                 document.getElementById('sex').value,
+      civilStatus:         document.getElementById('civil-status').value,
+      citizenship:         document.getElementById('citizenship').value,
+      noMiddleNameFlag:    document.getElementById('no-middle-name').checked,
+      mononymFlag:         document.getElementById('mononym').checked,
+      philSysIdNum:        document.getElementById('philsys-id').value.replace(/-/g, ''),
+      tinNumber:           document.getElementById('tin-number').value.replace(/-/g, ''),
+      directContributor:   contributorType === 'direct'   ? contributorCat : null,
+      indirectContributor: contributorType === 'indirect' ? contributorCat : null,
+      profession:          document.getElementById('profession').value,
+      income:              parseFloat(document.getElementById('income').value),
+      proofOfIncome:       document.getElementById('proof-of-income').value,
+    };
+
+    const draft = getRegistrationDraft();
+    draft.member = member;
+    saveRegistrationDraft(draft);
+
+    window.location.href = 'step2.html';
+  });
+</script>
+</body>
+</html>

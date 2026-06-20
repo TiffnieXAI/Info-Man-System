@@ -127,6 +127,7 @@
             animation: scaleNode 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
         }
     </style>
+    <script src="js/api.js"></script>
 </head>
 <body class="min-h-screen flex flex-col">
 <header class="bg-surface shadow-sm docked full-width top-0 z-50 sticky">
@@ -191,10 +192,10 @@
     </p>
 </div>
 
-<form action="step4.html" method="GET" class="space-y-md">
+<form id="dependentsForm" class="space-y-md">
     <div class="flex flex-col gap-md" id="dependents-container">
     
-    <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden group">
+    <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden group dependent-card">
     <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
     <div class="flex justify-between items-center mb-md">
     <div class="flex items-center gap-sm">
@@ -328,7 +329,7 @@
             const btn = container.lastElementChild;
             
             const newCard = document.createElement('div');
-            newCard.className = "bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden mt-md";
+            newCard.className = "bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden mt-md dependent-card";
             
             newCard.innerHTML = `
                 <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
@@ -399,6 +400,48 @@
                 primaryBtn.style.transform = 'translateY(0px)';
             });
         }
+
+        // ===== Wire form to sessionStorage + go to step4 =====
+        const relationshipMap = { spouse: "Legal Spouse", child: "Child", parent: "Parent" };
+        const citizenshipMap = { filipino: "F", dual: "DC", foreign: "FN" };
+
+        const dependentsForm = document.getElementById('dependentsForm');
+        dependentsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const cards = document.querySelectorAll('.dependent-card');
+            const dependents = [];
+
+            cards.forEach((card) => {
+                const nameInput = card.querySelector('input[type="text"]');
+                const checkboxes = card.querySelectorAll('input[type="checkbox"]:not(.peer)');
+                const noMiddleName = checkboxes[0] ? checkboxes[0].checked : false;
+                const mononym = checkboxes[1] ? checkboxes[1].checked : false;
+                const relationshipSelect = card.querySelector('select');
+                const dobInput = card.querySelector('input[type="date"]');
+                const citizenshipSelect = card.querySelectorAll('select')[1];
+                const disabilityToggle = card.querySelector('input.peer');
+
+                // skip empty cards (no name entered)
+                if (!nameInput || !nameInput.value.trim()) return;
+
+                dependents.push({
+                    dependentName: nameInput.value,
+                    relationshipToMember: relationshipMap[relationshipSelect.value] || relationshipSelect.value,
+                    depDateOfBirth: dobInput.value,
+                    depCitizenship: citizenshipMap[citizenshipSelect.value] || "F",
+                    depNoMiddleNameFlag: noMiddleName,
+                    depMononymFlag: mononym,
+                    permanentDisabilityFlag: disabilityToggle ? disabilityToggle.checked : false
+                });
+            });
+
+            const draft = getRegistrationDraft();
+            draft.dependents = dependents;
+            saveRegistrationDraft(draft);
+
+            window.location.href = 'step4.html';
+        });
     </script>
 </body></html>
 

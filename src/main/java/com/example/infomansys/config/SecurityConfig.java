@@ -28,17 +28,7 @@ public class SecurityConfig {
                 // public endpoints
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/registration").permitAll()
-
-                // admin only
-                .requestMatchers(HttpMethod.GET, "/api/members").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/members").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/contacts/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/contacts/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/members/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/contacts/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/dependents/**").hasRole("ADMIN")
-
-                // any authenticated user (controller methods will enforce pinId ownership)
+                .requestMatchers(HttpMethod.POST, "/api/dependents").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
