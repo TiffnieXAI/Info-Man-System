@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,12 +30,7 @@ public class ContactInfoController {
     // ADMIN: any pinId | USER: own pinId only
     @GetMapping("/{pinId}")
     public ResponseEntity<ApiResponse<ContactInfo>> getContactInfo(
-            @PathVariable String pinId,
-            Authentication auth) {
-        if (isUser(auth) && !ownsPinId(auth, pinId)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body(ApiResponse.error("Access denied."));
-        }
+            @PathVariable String pinId) {
         ContactInfo contactInfo = contactInfoService.getContactInfoByMember(pinId);
         return ResponseEntity.ok(
                 ApiResponse.success("Contact info retrieved successfully.", contactInfo));
@@ -46,12 +40,7 @@ public class ContactInfoController {
     @PutMapping("/{pinId}")
     public ResponseEntity<ApiResponse<ContactInfo>> updateContactInfo(
             @PathVariable String pinId,
-            @Valid @RequestBody ContactInfoDTO dto,
-            Authentication auth) {
-        if (isUser(auth) && !ownsPinId(auth, pinId)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body(ApiResponse.error("Access denied."));
-        }
+            @Valid @RequestBody ContactInfoDTO dto) {
         ContactInfo updated = contactInfoService.updateContactInfo(pinId, dto);
         return ResponseEntity.ok(
                 ApiResponse.success("Contact info updated successfully.", updated));
@@ -64,14 +53,5 @@ public class ContactInfoController {
         contactInfoService.deleteContactInfo(pinId);
         return ResponseEntity.ok(
                 ApiResponse.success("Contact info deleted successfully.", null));
-    }
-
-    private boolean isUser(Authentication auth) {
-        return auth.getAuthorities().stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_USER"));
-    }
-
-    private boolean ownsPinId(Authentication auth, String pinId) {
-        return pinId.equals(auth.getCredentials());
     }
 }

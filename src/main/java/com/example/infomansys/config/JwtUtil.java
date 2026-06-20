@@ -20,8 +20,6 @@ public class JwtUtil {
     public String generateToken(String username, String role, String pinId) {
         return Jwts.builder()
                 .setSubject(username)
-                .claim("role", role)
-                .claim("pinId", pinId)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_MS))
                 .signWith(getKey(), SignatureAlgorithm.HS256)

@@ -20,16 +20,4 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
-
-    // for USER role, links to their member record
-    @Column(name = "pin_id")
-    private String pinId;
-
-    public enum Role {
-        ADMIN, USER
-    }
 }

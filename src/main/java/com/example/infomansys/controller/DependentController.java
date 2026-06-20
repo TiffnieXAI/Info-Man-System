@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +22,7 @@ public class DependentController {
     // ADMIN: any | USER: own pinId only
     @PostMapping
     public ResponseEntity<ApiResponse<Dependent>> createDependent(
-            @Valid @RequestBody DependentDTO dto,
-            Authentication auth) {
-        if (isUser(auth) && !ownsPinId(auth, dto.getPinId())) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body(ApiResponse.error("Access denied."));
-        }
+            @Valid @RequestBody DependentDTO dto) {
         Dependent created = dependentService.createDependent(dto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success("Dependent added successfully.", created));
@@ -45,13 +39,8 @@ public class DependentController {
     // ADMIN: any | USER: own pinId only (checked via depId -> member)
     @GetMapping("/{depId}")
     public ResponseEntity<ApiResponse<Dependent>> getDependentById(
-            @PathVariable Integer depId,
-            Authentication auth) {
+            @PathVariable Integer depId) {
         Dependent dependent = dependentService.getDependentById(depId);
-        if (isUser(auth) && !ownsPinId(auth, dependent.getMember().getPinId())) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body(ApiResponse.error("Access denied."));
-        }
         return ResponseEntity.ok(
                 ApiResponse.success("Dependent retrieved successfully.", dependent));
     }
@@ -59,12 +48,7 @@ public class DependentController {
     // ADMIN: any pinId | USER: own pinId only
     @GetMapping("/member/{pinId}")
     public ResponseEntity<ApiResponse<List<Dependent>>> getDependentsByMember(
-            @PathVariable String pinId,
-            Authentication auth) {
-        if (isUser(auth) && !ownsPinId(auth, pinId)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body(ApiResponse.error("Access denied."));
-        }
+            @PathVariable String pinId) {
         List<Dependent> dependents = dependentService.getDependentsByMember(pinId);
         return ResponseEntity.ok(
                 ApiResponse.success("Dependents for member retrieved successfully.", dependents));
@@ -74,13 +58,8 @@ public class DependentController {
     @PutMapping("/{depId}")
     public ResponseEntity<ApiResponse<Dependent>> updateDependent(
             @PathVariable Integer depId,
-            @Valid @RequestBody DependentDTO dto,
-            Authentication auth) {
+            @Valid @RequestBody DependentDTO dto) {
         Dependent existing = dependentService.getDependentById(depId);
-        if (isUser(auth) && !ownsPinId(auth, existing.getMember().getPinId())) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body(ApiResponse.error("Access denied."));
-        }
         Dependent updated = dependentService.updateDependent(depId, dto);
         return ResponseEntity.ok(
                 ApiResponse.success("Dependent updated successfully.", updated));
@@ -93,14 +72,5 @@ public class DependentController {
         dependentService.deleteDependent(depId);
         return ResponseEntity.ok(
                 ApiResponse.success("Dependent deleted successfully.", null));
-    }
-
-    private boolean isUser(Authentication auth) {
-        return auth.getAuthorities().stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_USER"));
-    }
-
-    private boolean ownsPinId(Authentication auth, String pinId) {
-        return pinId.equals(auth.getCredentials());
     }
 }

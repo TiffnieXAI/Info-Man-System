@@ -16,9 +16,4 @@ public class RegisterRequest {
     @NotBlank(message = "Password is required")
     private String password;
 
-    @NotNull(message = "Role is required")
-    private User.Role role;
-
-    // only required if role is USER
-    private String pinId;
 }
