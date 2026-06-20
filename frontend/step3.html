@@ -1,0 +1,404 @@
+
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PhilHealth Member Portal - Register Dependents</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#3e4a3e",
+                        "on-primary-fixed-variant": "#005323",
+                        "surface-tint": "#006d31",
+                        "on-secondary-container": "#6e5c00",
+                        "outline": "#6e7a6d",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#6cdd87",
+                        "inverse-primary": "#6cdd87",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-container": "#f6fff3",
+                        "secondary": "#705d00",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#a4f5b4",
+                        "on-tertiary-fixed-variant": "#005226",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary-fixed": "#00210b",
+                        "on-surface": "#191c1d",
+                        "on-background": "#191c1d",
+                        "secondary-fixed-dim": "#e9c400",
+                        "primary": "#006b2f",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#88faa0",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-container": "#fcd400",
+                        "primary-container": "#00873e",
+                        "surface-dim": "#d9dadb",
+                        "on-secondary-fixed-variant": "#544600",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#f7fff3",
+                        "on-primary": "#ffffff",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#221b00",
+                        "tertiary-container": "#36834d",
+                        "tertiary": "#186937",
+                        "surface": "#f8f9fa",
+                        "outline-variant": "#bdcabb",
+                        "on-primary-fixed": "#00210a",
+                        "tertiary-fixed-dim": "#89d899"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .input-focus-effect:focus { outline: none; border-color: #006b2f; box-shadow: 0 0 0 2px rgba(0, 107, 47, 0.1); }
+        
+        /* Progress Bar Animation Classes for Step 3 */
+        @keyframes fillProgressStep3 {
+            from { width: 33.333%; }
+            to { width: 66.666%; }
+        }
+        .animate-progress-fill {
+            animation: fillProgressStep3 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes scaleNode {
+            from { transform: scale(0.9); opacity: 0.5; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-node-pop {
+            animation: scaleNode 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<header class="bg-surface shadow-sm docked full-width top-0 z-50 sticky">
+<nav class="flex justify-between items-center px-margin-desktop w-full h-16 max-w-[1440px] mx-auto">
+<a href="landing.html" class="flex items-center gap-base group hover:opacity-90 transition-opacity">
+    <span class="material-symbols-outlined text-primary text-3xl group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+    <span class="font-headline-md text-headline-md font-bold text-primary">PhilHealth</span>
+</a>
+<div class="hidden md:flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="language">language</span>
+<span class="font-body-md text-body-md text-on-surface-variant">English</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Member Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNL_j9Py-KzngQs815BXr4U_JFIMtsor2A4CQwyIaA1El5K1KUV_FZLSbF7I6qRPn9bzhBakZw9Lzox7O4MYq1rC_1cRaiM1FO7IuMwvIrOR0tHa3gDYJjsgIoFMQwUxG0mrWsPsMehfGxFG8AVW7VDp4oerXU43ifGWmwMNrwgF0n-A9DjHn6O7oMrfeWOMp77QT-vc_b5WYoJ4iOwYsUglIQ9qTRDvunSrvuQsV951aYLmNZgHpvfKeZeR1NAEbKDG5aZnfr6tvk"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="flex-grow py-xl px-margin-mobile md:px-0">
+<div class="max-w-[1140px] mx-auto">
+<div class="text-center mb-lg">
+<h1 class="font-display-lg text-display-lg text-on-background mb-xs">Become a Member</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Complete the form below to register your account.</p>
+</div>
+</div>
+<div class="max-w-3xl mx-auto mb-lg">
+<div class="relative flex justify-between items-center w-full">
+    <div class="absolute top-1/2 left-0 w-full h-2 bg-surface-container -translate-y-1/2 rounded-full z-0"></div>
+    <div class="absolute top-1/2 left-0 h-2 bg-secondary-container -translate-y-1/2 rounded-full z-0 transition-all animate-progress-fill"></div>
+    <div class="relative z-10 flex flex-col items-center gap-xs">
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white shadow-sm">
+            <span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 0, 'wght' 700;">check</span>
+        </div>
+        <span class="font-label-md text-label-md text-primary font-bold">Member</span>
+    </div>
+    <div class="relative z-10 flex flex-col items-center gap-xs">
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white shadow-sm">
+            <span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 0, 'wght' 700;">check</span>
+        </div>
+        <span class="font-label-md text-label-md text-primary font-bold">Contact</span>
+    </div>
+    <div class="relative z-10 flex flex-col items-center gap-xs animate-node-pop">
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-4 ring-white shadow-md">3</div>
+        <span class="font-label-md text-label-md text-primary font-bold">Dependent</span>
+    </div>
+    <div class="relative z-10 flex flex-col items-center gap-xs">
+        <div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold ring-4 ring-white">4</div>
+        <span class="font-label-md text-label-md text-on-surface-variant">Review</span>
+    </div>
+</div>
+</div>
+
+<div class="max-w-3xl mx-auto">
+<div class="mb-lg">
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Add Your Dependents</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant">
+        Declare your qualified dependents to ensure they are covered by your PhilHealth benefits. You can add your spouse, children, or parents if they meet the eligibility criteria. If you have no dependents, you can leave this blank and continue.
+    </p>
+</div>
+
+<form action="step4.html" method="GET" class="space-y-md">
+    <div class="flex flex-col gap-md" id="dependents-container">
+    
+    <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden group">
+    <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+    <div class="flex justify-between items-center mb-md">
+    <div class="flex items-center gap-sm">
+    <div class="bg-primary-container text-on-primary-container h-8 w-8 rounded-full flex items-center justify-center font-bold dependent-badge">1</div>
+    <h3 class="font-headline-md text-headline-md text-on-surface">Dependent Details</h3>
+    </div>
+    <button type="button" onclick="removeCard(this)" class="text-error hover:bg-error-container/20 p-xs rounded-lg transition-colors" title="Remove Dependent">
+    <span class="material-symbols-outlined">delete</span>
+    </button>
+    </div>
+    
+    <div class="space-y-md">
+    <div class="space-y-sm">
+    <label class="block font-label-md text-label-md text-on-surface">Full Name (Last, First, Middle)</label>
+    <input class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect" placeholder="e.g. Dela Cruz, Maria Santos" type="text">
+    <div class="flex gap-md mt-xs">
+        <label class="flex items-center gap-xs cursor-pointer group">
+            <input type="checkbox" class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">No Middle Name</span>
+        </label>
+        <label class="flex items-center gap-xs cursor-pointer group">
+            <input type="checkbox" class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">Mononym</span>
+        </label>
+    </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+    <div class="space-y-sm">
+    <label class="block font-label-md text-label-md text-on-surface">Relationship</label>
+    <select class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect">
+    <option disabled="" selected="" value="">Select Relationship</option>
+    <option value="spouse">Legal Spouse</option>
+    <option value="child">Child</option>
+    <option value="parent">Parent</option>
+    </select>
+    </div>
+    <div class="space-y-sm">
+    <label class="block font-label-md text-label-md text-on-surface">Date of Birth</label>
+    <input class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect" type="date">
+    </div>
+    <div class="space-y-sm md:col-span-2">
+    <label class="block font-label-md text-label-md text-on-surface">Citizenship</label>
+    <select class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect">
+    <option value="filipino">Filipino</option>
+    <option value="dual">Dual Citizen</option>
+    <option value="foreign">Foreign National</option>
+    </select>
+    </div>
+    </div>
+    <div class="mt-md pt-md border-t border-outline-variant flex items-center justify-between">
+    <div class="flex flex-col">
+    <span class="font-label-md text-label-md text-on-surface">Permanent Disability</span>
+    <span class="font-label-sm text-label-sm text-on-surface-variant">Does this dependent have a permanent disability?</span>
+    </div>
+    <label class="relative inline-flex items-center cursor-pointer">
+    <input class="sr-only peer" type="checkbox" value="">
+    <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+    </label>
+    </div>
+    </div>
+    </div>
+
+    <button type="button" class="group flex items-center justify-center gap-base p-md border-2 border-dashed border-outline-variant rounded-xl text-on-surface-variant hover:border-primary hover:text-primary transition-all duration-300 cursor-pointer bg-transparent hover:bg-primary-container/5 w-full" onclick="addDependent()">
+    <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">add_circle</span>
+    <span class="font-label-md text-label-md font-bold">Add Another Dependent</span>
+    </button>
+    </div>
+
+    <div class="mb-sm text-label-sm text-on-surface-variant mt-md"><span class="text-error">*</span> Indicates required field when a dependent is added</div>
+
+    <div class="flex gap-sm p-sm bg-surface-container rounded-lg border border-outline-variant mt-md">
+    <span class="material-symbols-outlined text-primary">info</span>
+    <div>
+        <p class="font-label-md text-label-md text-primary font-bold mb-xs">Who is a dependent?</p>
+        <p class="font-label-sm text-label-sm text-on-surface-variant leading-relaxed">
+            Eligible dependents include legal spouses, children below 21 years old (unmarried and unemployed), and parents aged 60 and above with low monthly income.
+        </p>
+    </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row justify-between items-center gap-md pt-lg mt-lg border-t border-outline-variant">
+    <a class="w-full md:w-auto px-md py-sm border border-outline text-on-surface-variant font-bold rounded-lg hover:bg-surface-container-high transition-all active:scale-95 cursor-pointer text-center" href="step2.html">Back</a>
+    <button type="submit" id="continue-btn" class="w-full md:w-auto px-md py-sm bg-primary text-on-primary font-bold rounded-lg hover:opacity-90 transition-all active:scale-95 shadow-sm cursor-pointer text-center">Continue to Review</button>
+    </div>
+</form>
+
+<div class="mt-lg flex flex-col items-center gap-sm text-on-surface-variant">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-md text-label-md font-bold">Secure Data Transmission</span>
+</div>
+<p class="font-label-sm text-label-sm text-center">Your data is encrypted using 256-bit SSL protocols. PhilHealth ensures the privacy and confidentiality of your information in compliance with the Data Privacy Act of 2012.</p>
+</div>
+</div>
+</main>
+<footer class="bg-surface-container border-t border-outline-variant w-full py-lg">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-[1140px] mx-auto gap-md">
+<div class="flex flex-col items-center md:items-start gap-xs">
+    <a href="landing.html" class="flex items-center gap-base">
+        <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+        <span class="font-headline-sm text-headline-sm text-primary font-bold">PhilHealth Portal</span>
+    </a>
+    <p class="font-label-sm text-label-sm text-on-surface-variant">© 2026 PhilHealth. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg mt-md md:mt-0">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<script>
+        function updateBadges() {
+            const badges = document.querySelectorAll('.dependent-badge');
+            badges.forEach((badge, index) => {
+                badge.textContent = index + 1;
+            });
+        }
+
+        function removeCard(buttonElement) {
+            // Correctly targets the outermost border-containing card structure wrapper
+            const card = buttonElement.closest('.bg-surface-container-lowest');
+            if (card) {
+                card.remove();
+                updateBadges();
+            }
+        }
+
+        function addDependent() {
+            const container = document.getElementById('dependents-container');
+            const btn = container.lastElementChild;
+            
+            const newCard = document.createElement('div');
+            newCard.className = "bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md md:p-lg relative overflow-hidden mt-md";
+            
+            newCard.innerHTML = `
+                <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                <div class="flex justify-between items-center mb-md">
+                    <div class="flex items-center gap-sm">
+                        <div class="bg-primary-container text-on-primary-container h-8 w-8 rounded-full flex items-center justify-center font-bold dependent-badge">0</div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface">Dependent Details</h3>
+                    </div>
+                    <button type="button" onclick="removeCard(this)" class="text-error hover:bg-error-container/20 p-xs rounded-lg transition-colors" title="Remove Dependent">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+                <div class="space-y-md">
+                    <div class="space-y-sm">
+                        <label class="block font-label-md text-label-md text-on-surface">Full Name (Last, First, Middle) <span class="text-error">*</span></label>
+                        <input required type="text" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect" placeholder="e.g. Dela Cruz, Maria Santos">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                        <div class="space-y-sm">
+                            <label class="block font-label-md text-label-md text-on-surface">Relationship <span class="text-error">*</span></label>
+                            <select required class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect">
+                                <option value="" disabled selected>Select Relationship</option>
+                                <option value="spouse">Legal Spouse</option>
+                                <option value="child">Child</option>
+                                <option value="parent">Parent</option>
+                            </select>
+                        </div>
+                        <div class="space-y-sm">
+                            <label class="block font-label-md text-label-md text-on-surface">Date of Birth <span class="text-error">*</span></label>
+                            <input required type="date" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect">
+                        </div>
+                        <div class="space-y-sm md:col-span-2">
+                            <label class="block font-label-md text-label-md text-on-surface">Citizenship <span class="text-error">*</span></label>
+                            <select required class="w-full bg-surface-bright border border-outline-variant rounded-lg p-sm font-body-md text-body-md input-focus-effect">
+                                <option value="filipino">Filipino</option>
+                                <option value="dual">Dual Citizen</option>
+                                <option value="foreign">Foreign National</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-md pt-md border-t border-outline-variant flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="font-label-md text-label-md text-on-surface">Permanent Disability</span>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant">Does this dependent have a permanent disability?</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer">
+                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+                </div>
+            `;
+            
+            container.insertBefore(newCard, btn);
+            updateBadges();
+        }
+
+        // Initialize proper numerical badge tracking on ready
+        updateBadges();
+
+        // Micro-interaction button effect
+        const primaryBtn = document.getElementById('continue-btn');
+        if(primaryBtn) {
+            primaryBtn.addEventListener('mouseover', () => {
+                primaryBtn.style.transform = 'translateY(-1px)';
+            });
+            primaryBtn.addEventListener('mouseout', () => {
+                primaryBtn.style.transform = 'translateY(0px)';
+            });
+        }
+    </script>
+</body></html>
+
