@@ -85,6 +85,16 @@ public class DependentService {
         dependentRepository.deleteById(depId);
     }
 
+    // ── DELETE ALL FOR A MEMBER ───────────────────────────────────────────────
+    @Transactional
+    public void deleteDependentsByMember(String pinId) {
+        if (!memberRepository.existsById(pinId)) {
+            throw new ResourceNotFoundException(
+                    "Member not found with PIN ID: " + pinId);
+        }
+        dependentRepository.deleteByMember_PinId(pinId);
+    }
+
     // ── MAPPER ────────────────────────────────────────────────────────────────
     private Dependent toEntity(DependentDTO dto, Member member) {
         return Dependent.builder()

@@ -1,0 +1,913 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>PhilHealth Admin Portal - Operations Management</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "on-surface-variant": "#3e4a3e",
+                    "on-primary-fixed-variant": "#005323",
+                    "surface-tint": "#006d31",
+                    "on-secondary-container": "#6e5c00",
+                    "outline": "#6e7a6d",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-variant": "#e1e3e4",
+                    "primary-fixed-dim": "#6cdd87",
+                    "inverse-primary": "#6cdd87",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2e3132",
+                    "surface-container-low": "#f3f4f5",
+                    "secondary-fixed": "#ffe16d",
+                    "surface-container": "#edeeef",
+                    "on-tertiary-container": "#f6fff3",
+                    "secondary": "#705d00",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#a4f5b4",
+                    "on-tertiary-fixed-variant": "#005226",
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary-fixed": "#00210b",
+                    "on-surface": "#191c1d",
+                    "on-background": "#191c1d",
+                    "secondary-fixed-dim": "#e9c400",
+                    "primary": "#006b2f",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#88faa0",
+                    "surface-bright": "#f8f9fa",
+                    "secondary-container": "#fcd400",
+                    "primary-container": "#00873e",
+                    "surface-dim": "#d9dadb",
+                    "on-secondary-fixed-variant": "#544600",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#f7fff3",
+                    "on-primary": "#ffffff",
+                    "background": "#f8f9fa",
+                    "on-secondary-fixed": "#221b00",
+                    "tertiary-container": "#36834d",
+                    "tertiary": "#186937",
+                    "surface": "#f8f9fa",
+                    "outline-variant": "#bdcabb",
+                    "on-primary-fixed": "#00210a",
+                    "tertiary-fixed-dim": "#89d899"
+                }
+            }
+        }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        vertical-align: middle;
+    }
+    .input-focus-effect:focus { outline: none; border-color: #006b2f; box-shadow: 0 0 0 2px rgba(0, 107, 47, 0.1); }
+  </style>
+</head>
+<body class="bg-background min-h-screen flex flex-col">
+
+<header class="bg-surface shadow-sm sticky top-0 z-40 border-b border-outline-variant">
+  <div class="flex justify-between items-center px-6 w-full h-16 max-w-[1440px] mx-auto">
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-base group">
+        <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+        <span class="font-bold text-lg text-primary tracking-tight">PhilHealth <span class="text-on-surface-variant font-medium text-sm ml-2 px-2 py-0.5 bg-surface-container rounded-md">Admin Portal</span></span>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+      <div class="flex items-center gap-sm border-l border-outline-variant pl-4">
+        <div class="text-right hidden sm:block">
+          <p class="text-xs font-bold text-on-surface">Admin Officer</p>
+          <p class="text-[10px] text-on-surface-variant">ID: #8824-A</p>
+        </div>
+        <div class="h-8 w-8 rounded-full bg-primary-container text-on-primary-container font-bold flex items-center justify-center text-xs">
+          AO
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="flex-grow max-w-[1440px] w-full mx-auto px-6 py-8">
+
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+    <div>
+      <h1 class="text-2xl font-bold text-on-background tracking-tight">Member Registry Ledger</h1>
+      <p class="text-sm text-on-surface-variant">Add, monitor, update, and manage official PhilHealth beneficiary records.</p>
+    </div>
+    <button onclick="openAddModal()" class="flex items-center gap-base px-4 py-2 bg-primary text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all shadow-sm">
+      <span class="material-symbols-outlined text-sm">add</span> Add New Member
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+      <div class="p-3 bg-primary-container text-on-primary-container rounded-lg">
+        <span class="material-symbols-outlined">groups</span>
+      </div>
+      <div>
+        <span class="block text-xs font-bold text-on-surface-variant">Active Registered Members</span>
+        <span id="stat-total" class="text-xl font-bold text-on-surface">— Records</span>
+      </div>
+    </div>
+    <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+      <div class="p-3 bg-secondary-container text-on-secondary-container rounded-lg">
+        <span class="material-symbols-outlined">family_restroom</span>
+      </div>
+      <div>
+        <span class="block text-xs font-bold text-on-surface-variant">Total Dependents Linked</span>
+        <span id="stat-dependents" class="text-xl font-bold text-on-surface">— Dependents</span>
+      </div>
+    </div>
+    <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+      <div class="p-3 bg-surface-container-highest text-on-surface-variant rounded-lg">
+        <span class="material-symbols-outlined">verified_user</span>
+      </div>
+      <div>
+        <span class="block text-xs font-bold text-on-surface-variant">System Security Health</span>
+        <span class="text-xl font-bold text-primary">Operational</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+    <div class="p-4 border-b border-outline-variant bg-surface-container-low flex flex-col sm:flex-row justify-between gap-4 items-center">
+      <div class="relative w-full sm:max-w-xs">
+        <span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span>
+        <input type="text" id="search-input" placeholder="Search members by name or PIN..." class="w-full pl-9 pr-4 py-1.5 bg-surface-bright border border-outline-variant rounded-lg text-sm input-focus-effect">
+      </div>
+      <div id="table-status" class="text-xs text-on-surface-variant font-medium">Loading records…</div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+        <tr class="bg-surface-container text-on-surface text-xs font-bold border-b border-outline-variant uppercase tracking-wider">
+          <th class="p-4">PIN / PhilSys ID</th>
+          <th class="p-4">Member Name</th>
+          <th class="p-4">Demographics & Info</th>
+          <th class="p-4">Contact & Address</th>
+          <th class="p-4">Dependents</th>
+          <th class="p-4 text-right">Administrative Actions</th>
+        </tr>
+        </thead>
+        <tbody id="member-table-rows" class="divide-y divide-outline-variant text-sm text-on-surface">
+          <tr id="loading-row">
+            <td colspan="6" class="p-8 text-center text-on-surface-variant text-sm">
+              <span class="material-symbols-outlined animate-spin text-primary">refresh</span>
+              <span class="ml-2">Loading member records…</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer class="bg-surface-container border-t border-outline-variant w-full py-4 mt-auto">
+  <div class="flex flex-col md:flex-row justify-between items-center px-6 max-w-[1440px] mx-auto text-xs text-on-surface-variant gap-2">
+    <p>© 2026 PhilHealth Internal Administration Portal. Confidential Operations Ledger Node.</p>
+    <p>In adherence with the Data Privacy Act of 2012.</p>
+  </div>
+</footer>
+
+<!-- ─── MEMBER MODAL ─────────────────────────────────────────────────────── -->
+<div id="member-modal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="bg-surface-container-lowest rounded-xl max-w-3xl w-full border border-outline-variant shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+
+    <div class="p-4 bg-surface-container border-b border-outline-variant flex justify-between items-center">
+      <h3 id="modal-title" class="font-bold text-on-surface flex items-center gap-sm">
+        <span class="material-symbols-outlined text-primary">person_add</span> Add New Member Complete Ledger
+      </h3>
+      <button onclick="closeModal()" class="text-on-surface-variant hover:bg-surface-container-highest p-1 rounded">
+        <span class="material-symbols-outlined text-sm">close</span>
+      </button>
+    </div>
+
+    <!-- Error banner -->
+    <div id="form-error" class="hidden mx-6 mt-4 p-3 bg-error-container text-on-error-container rounded-lg text-xs font-bold"></div>
+
+    <form id="member-form" onsubmit="handleFormSubmit(event)" class="overflow-y-auto p-6 space-y-6">
+      <input type="hidden" id="form-mode" value="add">
+
+      <!-- 1. Core Profile Details -->
+      <div>
+        <h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-1">
+          <span class="material-symbols-outlined text-base">badge</span> 1. Core Profile Details
+        </h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">PhilHealth Identification Number (PIN) <span class="text-error">*</span></label>
+            <input required id="member-pin" type="text" placeholder="00-000000000-0" maxlength="14" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">PhilSys Card Number</label>
+            <input id="member-philsys" type="text" placeholder="0000-0000-0000-0000" maxlength="19" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1 sm:col-span-2">
+            <div class="flex items-center gap-4 mb-1">
+              <label class="block text-xs font-bold text-on-surface">Full Name (Last, First, Middle) <span class="text-error">*</span></label>
+              <label class="flex items-center gap-1 text-xs text-on-surface-variant cursor-pointer">
+                <input id="member-no-middle-name" type="checkbox" class="rounded border-outline-variant text-primary focus:ring-primary h-3.5 w-3.5"> No Middle Name
+              </label>
+              <label class="flex items-center gap-1 text-xs text-on-surface-variant cursor-pointer">
+                <input id="member-mononym" type="checkbox" class="rounded border-outline-variant text-primary focus:ring-primary h-3.5 w-3.5"> Mononym
+              </label>
+            </div>
+            <input required id="member-name" type="text" placeholder="e.g. Dela Cruz, Juan Santos" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1 sm:col-span-2">
+            <label class="block text-xs font-bold text-on-surface">Mother's Maiden Name <span class="text-error">*</span></label>
+            <input required id="member-mother" type="text" placeholder="Surname, Given Name, Middle Name" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1 sm:col-span-2">
+            <label class="block text-xs font-bold text-on-surface">Spouse Name (If applicable)</label>
+            <input id="member-spouse" type="text" placeholder="Full legal name" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Tax Identification Number (TIN)</label>
+            <input id="member-tin" type="text" placeholder="000-000-000-000" maxlength="15" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Date of Birth <span class="text-error">*</span></label>
+            <input required id="member-dob" type="date" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1 sm:col-span-2">
+            <label class="block text-xs font-bold text-on-surface">Place of Birth <span class="text-error">*</span></label>
+            <input required id="member-pob" type="text" placeholder="City/Municipality, Province" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Sex <span class="text-error">*</span></label>
+            <select required id="member-sex" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+              <option value="" disabled selected>Select Sex</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Civil Status <span class="text-error">*</span></label>
+            <select required id="member-status" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+              <option value="" disabled selected>Select Status</option>
+              <option value="S">Single</option>
+              <option value="M">Married</option>
+              <option value="W">Widow/er</option>
+              <option value="LS">Legally Separated</option>
+              <option value="A">Annulled</option>
+            </select>
+          </div>
+          <div class="space-y-1 sm:col-span-2">
+            <label class="block text-xs font-bold text-on-surface">Citizenship <span class="text-error">*</span></label>
+            <select required id="member-citizenship" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+              <option value="" disabled selected>Select Citizenship</option>
+              <option value="F">Filipino</option>
+              <option value="FN">Foreign National</option>
+              <option value="DC">Dual Citizen</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-outline-variant">
+
+      <!-- 2. Socio-Economic Status & Contributions -->
+      <div>
+        <h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-1">
+          <span class="material-symbols-outlined text-base">payments</span> 2. Socio-Economic Status & Contributions
+        </h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Profession <span class="text-error">*</span></label>
+            <input required id="member-profession" type="text" placeholder="Current Occupation" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Monthly Income (PHP) <span class="text-error">*</span></label>
+            <input required id="member-income" type="number" min="1" placeholder="0.00" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1 sm:col-span-2">
+            <label class="block text-xs font-bold text-on-surface">Konsulta Provider <span class="text-error">*</span></label>
+            <input required id="member-konsulta" type="text" placeholder="Name of Health Center/Clinic" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Contributor Type <span class="text-error">*</span></label>
+            <select required id="member-contribtype" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+              <option value="" disabled selected>Select Type</option>
+              <option value="direct">Direct Contributor</option>
+              <option value="indirect">Indirect Contributor</option>
+            </select>
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Contributor Category <span class="text-error">*</span></label>
+            <select required id="member-contribcat" disabled class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+              <option value="">Select Contributor Type first</option>
+            </select>
+          </div>
+          <div class="space-y-1 sm:col-span-2">
+            <label class="block text-xs font-bold text-on-surface">Proof of Income Document <span class="text-error">*</span></label>
+            <select required id="member-proofincome" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+              <option value="" disabled selected>Select Document Type</option>
+              <option value="SRB">Seafarer's Record Book (SRB)</option>
+              <option value="COE">Certificate of Employment (COE) with Compensation</option>
+              <option value="ITR">Latest Income Tax Return (ITR - BIR Form 2316)</option>
+              <option value="AFS">Audited Financial Statement (AFS)</option>
+              <option value="PASSBOOK">Bank Passbook/Statement</option>
+              <option value="PAYSLIP">Payslip (Last 3 Months)</option>
+              <option value="BUSSREG">Official Receipt of Business Registration (DTI/SEC)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-outline-variant">
+
+      <!-- 3. Contact & Address -->
+      <div>
+        <h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-1">
+          <span class="material-symbols-outlined text-base">contact_mail</span> 3. Contact & Address Map
+        </h4>
+        <div class="space-y-4">
+          <div class="space-y-1">
+            <label class="block text-xs font-bold text-on-surface">Permanent Residential Address <span class="text-error">*</span></label>
+            <textarea required id="member-address" rows="2" placeholder="House/Lot, Street, Barangay, City/Municipality, Province, Zip Code" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect"></textarea>
+          </div>
+          <div class="flex items-center gap-2 py-1">
+            <input id="member-sameaddr" type="checkbox" class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4">
+            <label for="member-sameaddr" class="text-xs font-bold text-on-surface-variant cursor-pointer">Mailing Address is Same as Permanent Address</label>
+          </div>
+          <div class="space-y-1" id="mailing-address-wrapper">
+            <label class="block text-xs font-bold text-on-surface">Mailing Address</label>
+            <textarea id="member-mailing" rows="2" placeholder="Enter mailing address if different from permanent" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect"></textarea>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <label class="block text-xs font-bold text-on-surface">Mobile Phone Number <span class="text-error">*</span></label>
+              <div class="relative">
+                <span class="absolute left-3 top-2 text-sm text-on-surface-variant font-medium">+63</span>
+                <input required id="member-phone" type="tel" placeholder="9123456789" maxlength="10" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 pl-12 text-sm input-focus-effect">
+              </div>
+            </div>
+            <div class="space-y-1">
+              <label class="block text-xs font-bold text-on-surface">Email Address</label>
+              <input id="member-email" type="email" placeholder="name@domain.com" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+            </div>
+            <div class="space-y-1">
+              <label class="block text-xs font-bold text-on-surface">Home Landline Number</label>
+              <input id="member-homenumber" type="tel" placeholder="Area Code - Phone Number" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+            </div>
+            <div class="space-y-1">
+              <label class="block text-xs font-bold text-on-surface">Business Landline Number</label>
+              <input id="member-busnumber" type="tel" placeholder="Area Code - Phone Number" class="w-full bg-surface-bright border border-outline-variant rounded-lg p-2 text-sm input-focus-effect">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-outline-variant">
+
+      <!-- 4. Linked Beneficiary Dependents -->
+      <div>
+        <div class="flex justify-between items-center mb-3">
+          <h4 class="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1">
+            <span class="material-symbols-outlined text-base">family_restroom</span> 4. Linked Beneficiary Dependents
+          </h4>
+          <button type="button" onclick="addDependentSubform()" class="text-xs font-bold text-primary flex items-center gap-0.5 hover:underline bg-transparent">
+            <span class="material-symbols-outlined text-sm">add_circle</span> Add Dependent Card
+          </button>
+        </div>
+        <div id="modal-dependents-container" class="space-y-3"></div>
+      </div>
+
+      <div class="flex justify-end gap-sm pt-4 border-t border-outline-variant">
+        <button type="button" onclick="closeModal()" class="px-4 py-2 border border-outline text-on-surface-variant font-bold text-xs rounded-lg hover:bg-surface-container-high transition-all">Cancel</button>
+        <button type="submit" id="submit-btn" class="px-4 py-2 bg-primary text-white font-bold text-xs rounded-lg hover:opacity-90 transition-all shadow-sm">Save Complete Ledger</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+  // ── DOM refs ─────────────────────────────────────────────────────────────
+  const modal         = document.getElementById('member-modal');
+  const form          = document.getElementById('member-form');
+  const modalTitle    = document.getElementById('modal-title');
+  const tableBody     = document.getElementById('member-table-rows');
+  const statTotal     = document.getElementById('stat-total');
+  const statDepsCount = document.getElementById('stat-dependents');
+  const depsContainer = document.getElementById('modal-dependents-container');
+  const checkboxSameAddr  = document.getElementById('member-sameaddr');
+  const permAddrTextarea  = document.getElementById('member-address');
+  const mailAddrTextarea  = document.getElementById('member-mailing');
+  const formError     = document.getElementById('form-error');
+  const submitBtn     = document.getElementById('submit-btn');
+  const searchInput   = document.getElementById('search-input');
+  const tableStatus   = document.getElementById('table-status');
+
+  // ── Lookup tables matching schema CHECK constraints ───────────────────────
+  const SEX_LABEL      = { M: 'Male', F: 'Female' };
+  const STATUS_LABEL   = { S: 'Single', M: 'Married', W: 'Widow/er', LS: 'Legally Separated', A: 'Annulled' };
+  const CIT_LABEL      = { F: 'Filipino', FN: 'Foreign National', DC: 'Dual Citizen' };
+  const PROOF_LABEL    = {
+    SRB: 'SRB', COE: 'COE', ITR: 'ITR', AFS: 'AFS',
+    PASSBOOK: 'Passbook', PAYSLIP: 'Payslip', BUSSREG: 'Buss. Reg.'
+  };
+
+  const DIRECT_OPTIONS = [
+    { value: 'EP',  label: 'Employed Private' },
+    { value: 'EG',  label: 'Employed Government' },
+    { value: 'PP',  label: 'Professional Practitioner' },
+    { value: 'SEI', label: 'Self-Earning Individual' },
+    { value: 'SP',  label: 'Sole Proprietor' },
+    { value: 'GES', label: 'Group Enrollment Scheme' },
+    { value: 'K',   label: 'Kasambahay' },
+    { value: 'FD',  label: 'Family Driver' },
+    { value: 'LMW', label: 'Land-Based Migrant Worker' },
+    { value: 'SMW', label: 'Sea-Based Migrant Worker' },
+    { value: 'LM',  label: 'Lifetime Member' },
+    { value: 'FDC', label: 'Filipinos with Dual Citizenship' },
+    { value: 'FN',  label: 'Foreign National' },
+  ];
+  const INDIRECT_OPTIONS = [
+    { value: 'L',   label: 'Listahanan' },
+    { value: 'FP',  label: '4Ps/MCCT' },
+    { value: 'SC',  label: 'Senior Citizen' },
+    { value: 'P',   label: 'PAMANA' },
+    { value: 'KK',  label: 'KIA/KIPO' },
+    { value: 'BN',  label: 'Bangsamoro/Normalization' },
+    { value: 'LGU', label: 'LGU-Sponsored' },
+    { value: 'NGA', label: 'NGA-Sponsored' },
+    { value: 'PRI', label: 'Private-Sponsored' },
+    { value: 'PWD', label: 'Person with Disability' },
+  ];
+
+  // ── In-memory data store (populated from API on load) ───────────────────
+  // Each entry: { member: {...}, contact: {...}, dependents: [...] }
+  let membersStore = [];
+
+  // ── Contributor category dynamic dropdown ─────────────────────────────────
+  const contribTypeSelect = document.getElementById('member-contribtype');
+  const contribCatSelect  = document.getElementById('member-contribcat');
+
+  contribTypeSelect.addEventListener('change', () => {
+    const opts = contribTypeSelect.value === 'direct'   ? DIRECT_OPTIONS
+               : contribTypeSelect.value === 'indirect' ? INDIRECT_OPTIONS
+               : [];
+    contribCatSelect.innerHTML = '<option value="">Select Category</option>';
+    opts.forEach(o => {
+      const el = document.createElement('option');
+      el.value = o.value; el.textContent = o.label;
+      contribCatSelect.appendChild(el);
+    });
+    contribCatSelect.disabled = opts.length === 0;
+  });
+
+  // ── Same-address toggle ───────────────────────────────────────────────────
+  checkboxSameAddr.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      mailAddrTextarea.value    = permAddrTextarea.value;
+      mailAddrTextarea.disabled = true;
+      mailAddrTextarea.classList.add('opacity-50');
+    } else {
+      mailAddrTextarea.disabled = false;
+      mailAddrTextarea.classList.remove('opacity-50');
+    }
+  });
+  permAddrTextarea.addEventListener('input', () => {
+    if (checkboxSameAddr.checked) mailAddrTextarea.value = permAddrTextarea.value;
+  });
+
+  // ── Input masks ───────────────────────────────────────────────────────────
+  function applyMask(id, pattern) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      let out = '', vi = 0;
+      for (let i = 0; i < pattern.length && vi < val.length; i++) {
+        out += pattern[i] === '0' ? val[vi++] : pattern[i];
+      }
+      e.target.value = out;
+    });
+  }
+  applyMask('member-pin',    '00-000000000-0');
+  applyMask('member-philsys','0000-0000-0000-0000');
+  applyMask('member-tin',    '000-000-000-000');
+
+  // ── Search ────────────────────────────────────────────────────────────────
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    renderTable(q ? membersStore.filter(e =>
+      e.member.memberName.toLowerCase().includes(q) ||
+      e.member.pinId.toLowerCase().includes(q)
+    ) : membersStore);
+  });
+
+  // ── API helpers ───────────────────────────────────────────────────────────
+  async function apiFetch(path, opts = {}) {
+    const res = await fetch(`${API_BASE_URL}${path}`, {
+      headers: { 'Content-Type': 'application/json' },
+      ...opts,
+    });
+    const data = await res.json();
+    if (!res.ok || data.success === false) throw new Error(data.message || `HTTP ${res.status}`);
+    return data;
+  }
+
+  // ── Load all members from the API ─────────────────────────────────────────
+  async function loadMembers() {
+    try {
+      const data = await apiFetch('/members');
+      // Expected: { success: true, data: [ { member, contact, dependents } ] }
+      membersStore = Array.isArray(data.data) ? data.data : [];
+      renderTable(membersStore);
+      updateMetrics();
+      tableStatus.textContent = `Showing ${membersStore.length} indexed record${membersStore.length !== 1 ? 's' : ''}`;
+    } catch (err) {
+      tableBody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-error text-sm">
+        <span class="material-symbols-outlined align-middle">error</span>
+        Failed to load members: ${err.message}
+      </td></tr>`;
+      tableStatus.textContent = 'Error loading records';
+    }
+  }
+
+  // ── Render table rows from data ──────────────────────────────────────────
+  function renderTable(entries) {
+    if (entries.length === 0) {
+      tableBody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-on-surface-variant text-sm">No records found.</td></tr>`;
+      return;
+    }
+    tableBody.innerHTML = entries.map(e => buildRowHTML(e)).join('');
+  }
+
+  function buildRowHTML({ member, contact, dependents }) {
+    const pin        = member.pinId || '';
+    const name       = member.memberName || '';
+    const philsys    = member.philSysIdNum ? formatPhilSys(member.philSysIdNum) : '—';
+    const sex        = SEX_LABEL[member.sex] || member.sex || '—';
+    const status     = STATUS_LABEL[member.civilStatus] || member.civilStatus || '—';
+    const dob        = member.dateOfBirth || '—';
+    const mobile     = contact ? contact.mobileNumber || '—' : '—';
+    const addrFull   = contact ? contact.permanentHomeAddress || '' : '';
+    const addrShort  = addrFull.split(',').slice(-2).join(',').trim();
+    const deps       = Array.isArray(dependents) ? dependents : [];
+    const depCount   = deps.length;
+    const depNames   = deps.map(d => (d.dependentName || '').split(',')[0]).join(', ') || 'None';
+
+    return `<tr class="hover:bg-surface-container-low transition-colors" id="row-${pin}">
+      <td class="p-4">
+        <span class="block font-mono font-bold text-primary">${pin}</span>
+        <span class="block text-[11px] text-outline font-mono">PSN: ${philsys}</span>
+      </td>
+      <td class="p-4 font-medium">${name}</td>
+      <td class="p-4">
+        <span class="block text-xs font-bold text-on-surface-variant">${status} • ${sex}</span>
+        <span class="block text-[11px] text-outline">DOB: ${dob}</span>
+      </td>
+      <td class="p-4">
+        <span class="block text-xs font-bold text-on-surface-variant">${mobile}</span>
+        <span class="block text-[11px] text-outline max-w-[200px] truncate" title="${addrFull}">${addrShort || addrFull}</span>
+      </td>
+      <td class="p-4">
+        <div class="flex flex-col gap-0.5">
+          <span class="inline-flex items-center rounded-md bg-primary-container px-1.5 py-0.5 text-xs font-medium text-on-primary-container w-max">${depCount} Linked</span>
+          <span class="text-[10px] text-outline truncate max-w-[150px]">${depNames}</span>
+        </div>
+      </td>
+      <td class="p-4 text-right space-x-1 whitespace-nowrap">
+        <button onclick="loadRowToEdit('${pin}')" class="text-primary hover:bg-primary/10 p-1.5 rounded-lg transition-colors" title="Edit Record">
+          <span class="material-symbols-outlined text-sm">edit</span>
+        </button>
+        <button onclick="confirmDelete('${pin}', '${name}')" class="text-error hover:bg-error-container/40 p-1.5 rounded-lg transition-colors" title="Delete Record">
+          <span class="material-symbols-outlined text-sm">delete</span>
+        </button>
+      </td>
+    </tr>`;
+  }
+
+  function formatPhilSys(raw) {
+    const d = raw.replace(/\D/g, '');
+    if (d.length === 16) return `${d.slice(0,4)}-${d.slice(4,8)}-${d.slice(8,12)}-${d.slice(12)}`;
+    return raw;
+  }
+
+  // ── Metrics ───────────────────────────────────────────────────────────────
+  function updateMetrics() {
+    statTotal.textContent = `${membersStore.length} Record${membersStore.length !== 1 ? 's' : ''}`;
+    const totalDeps = membersStore.reduce((sum, e) => sum + (Array.isArray(e.dependents) ? e.dependents.length : 0), 0);
+    statDepsCount.textContent = `${totalDeps} Dependent${totalDeps !== 1 ? 's' : ''}`;
+  }
+
+  // ── Dependent subform ─────────────────────────────────────────────────────
+  function addDependentSubform(data = null) {
+    const card = document.createElement('div');
+    card.className = 'bg-surface-container-low rounded-lg p-3 border border-outline-variant relative space-y-2 dependent-modal-card';
+
+    // Build citizenship options for this dependent
+    const citOptions = [
+      { value: 'F',  label: 'Filipino' },
+      { value: 'DC', label: 'Dual Citizen' },
+      { value: 'FN', label: 'Foreign National' },
+    ];
+    const citHTML = citOptions.map(o =>
+      `<option value="${o.value}" ${data && data.depCitizenship === o.value ? 'selected' : ''}>${o.label}</option>`
+    ).join('');
+
+    // Relationship map (API → select value)
+    const relMap = { 'Legal Spouse': 'spouse', 'Child': 'child', 'Parent': 'parent' };
+    const relVal = data ? (relMap[data.relationshipToMember] || data.relationshipToMember || '') : '';
+
+    card.innerHTML = `
+      <button type="button" onclick="this.closest('.dependent-modal-card').remove()" class="absolute top-2 right-2 text-error hover:bg-error-container/20 p-1 rounded" title="Remove Card">
+        <span class="material-symbols-outlined text-sm">delete</span>
+      </button>
+      <div class="space-y-2 pr-6">
+        <div class="space-y-1">
+          <div class="flex items-center gap-4">
+            <label class="block text-[11px] font-bold text-on-surface">Dependent Full Name <span class="text-error">*</span></label>
+            <label class="flex items-center gap-1 text-[11px] text-on-surface-variant cursor-pointer">
+              <input type="checkbox" ${data && data.depNoMiddleNameFlag ? 'checked' : ''} class="rounded border-outline-variant text-primary focus:ring-primary h-3 w-3 dep-no-middle"> No Middle Name
+            </label>
+            <label class="flex items-center gap-1 text-[11px] text-on-surface-variant cursor-pointer">
+              <input type="checkbox" ${data && data.depMononymFlag ? 'checked' : ''} class="rounded border-outline-variant text-primary focus:ring-primary h-3 w-3 dep-mononym"> Mononym
+            </label>
+          </div>
+          <input required type="text" value="${data ? data.dependentName || '' : ''}" class="w-full bg-surface-bright border border-outline-variant rounded p-1.5 text-xs input-focus-effect dep-name" placeholder="Last, First, Middle">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <div class="space-y-1">
+            <label class="block text-[11px] font-bold text-on-surface">Relationship <span class="text-error">*</span></label>
+            <select required class="w-full bg-surface-bright border border-outline-variant rounded p-1.5 text-xs input-focus-effect dep-rel">
+              <option value="" disabled ${!relVal ? 'selected' : ''}>Select</option>
+              <option value="spouse" ${relVal === 'spouse' ? 'selected' : ''}>Spouse</option>
+              <option value="child"  ${relVal === 'child'  ? 'selected' : ''}>Child</option>
+              <option value="parent" ${relVal === 'parent' ? 'selected' : ''}>Parent</option>
+            </select>
+          </div>
+          <div class="space-y-1">
+            <label class="block text-[11px] font-bold text-on-surface">Date of Birth <span class="text-error">*</span></label>
+            <input required type="date" value="${data ? data.depDateOfBirth || '' : ''}" class="w-full bg-surface-bright border border-outline-variant rounded p-1.5 text-xs input-focus-effect dep-dob">
+          </div>
+          <div class="space-y-1">
+            <label class="block text-[11px] font-bold text-on-surface">Citizenship <span class="text-error">*</span></label>
+            <select required class="w-full bg-surface-bright border border-outline-variant rounded p-1.5 text-xs input-focus-effect dep-cit">
+              ${citHTML}
+            </select>
+          </div>
+        </div>
+        <div class="pt-2 border-t border-outline-variant flex items-center justify-between">
+          <div class="flex flex-col">
+            <span class="text-[11px] font-bold text-on-surface">Permanent Disability</span>
+            <span class="text-[10px] text-on-surface-variant">Does this dependent have a permanent disability?</span>
+          </div>
+          <input type="checkbox" ${data && data.permanentDisabilityFlag ? 'checked' : ''} class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4 dep-dis">
+        </div>
+      </div>
+    `;
+    depsContainer.appendChild(card);
+  }
+
+  // ── Open/close modal ─────────────────────────────────────────────────────
+  function openAddModal() {
+    form.reset();
+    depsContainer.innerHTML = '';
+    contribCatSelect.innerHTML = '<option value="">Select Contributor Type first</option>';
+    contribCatSelect.disabled = true;
+    formError.classList.add('hidden');
+    document.getElementById('form-mode').value = 'add';
+    document.getElementById('member-pin').disabled = false;
+    mailAddrTextarea.disabled = false;
+    mailAddrTextarea.classList.remove('opacity-50');
+    modalTitle.innerHTML = `<span class="material-symbols-outlined text-primary">person_add</span> Add New Member Complete Ledger`;
+    submitBtn.textContent = 'Save Complete Ledger';
+    modal.classList.remove('hidden');
+  }
+
+  function loadRowToEdit(pin) {
+    const entry = membersStore.find(e => e.member.pinId === pin);
+    if (!entry) return;
+    const { member, contact, dependents } = entry;
+
+    form.reset();
+    depsContainer.innerHTML = '';
+    formError.classList.add('hidden');
+
+    document.getElementById('form-mode').value  = 'edit';
+    document.getElementById('member-pin').value = pin;
+    document.getElementById('member-pin').disabled = true;
+
+    document.getElementById('member-philsys').value    = member.philSysIdNum ? formatPhilSys(member.philSysIdNum) : '';
+    document.getElementById('member-name').value       = member.memberName || '';
+    document.getElementById('member-no-middle-name').checked = !!member.noMiddleNameFlag;
+    document.getElementById('member-mononym').checked  = !!member.mononymFlag;
+    document.getElementById('member-mother').value     = member.memberMotherName || '';
+    document.getElementById('member-spouse').value     = member.memberSpouseName || '';
+    document.getElementById('member-tin').value        = member.tinNumber ? formatTin(member.tinNumber) : '';
+    document.getElementById('member-dob').value        = member.dateOfBirth || '';
+    document.getElementById('member-pob').value        = member.birthPlace || '';
+    document.getElementById('member-sex').value        = member.sex || '';
+    document.getElementById('member-status').value     = member.civilStatus || '';
+    document.getElementById('member-citizenship').value = member.citizenship || '';
+    document.getElementById('member-profession').value = member.profession || '';
+    document.getElementById('member-income').value     = member.income || '';
+    document.getElementById('member-konsulta').value   = member.konsultaProvider || '';
+    document.getElementById('member-proofincome').value = member.proofOfIncome || '';
+
+    // Determine contributor type and category
+    let contribType = '', contribCat = '';
+    if (member.directContributor)   { contribType = 'direct';   contribCat = member.directContributor; }
+    else if (member.indirectContributor) { contribType = 'indirect'; contribCat = member.indirectContributor; }
+    contribTypeSelect.value = contribType;
+    // Trigger category options build
+    const catOpts = contribType === 'direct' ? DIRECT_OPTIONS : contribType === 'indirect' ? INDIRECT_OPTIONS : [];
+    contribCatSelect.innerHTML = '<option value="">Select Category</option>';
+    catOpts.forEach(o => {
+      const el = document.createElement('option');
+      el.value = o.value; el.textContent = o.label;
+      contribCatSelect.appendChild(el);
+    });
+    contribCatSelect.disabled = catOpts.length === 0;
+    contribCatSelect.value = contribCat;
+
+    // Contact info
+    if (contact) {
+      document.getElementById('member-address').value  = contact.permanentHomeAddress || '';
+      const isSame = !contact.mailAddress || contact.mailAddress === contact.permanentHomeAddress;
+      checkboxSameAddr.checked = isSame;
+      if (isSame) {
+        mailAddrTextarea.value    = contact.permanentHomeAddress || '';
+        mailAddrTextarea.disabled = true;
+        mailAddrTextarea.classList.add('opacity-50');
+      } else {
+        mailAddrTextarea.value    = contact.mailAddress || '';
+        mailAddrTextarea.disabled = false;
+        mailAddrTextarea.classList.remove('opacity-50');
+      }
+      // Strip leading country code for display in the +63 field
+      let rawPhone = contact.mobileNumber || '';
+      if (rawPhone.startsWith('+63')) rawPhone = rawPhone.slice(3).replace(/^\s/, '');
+      else if (rawPhone.startsWith('63') && rawPhone.length > 10) rawPhone = rawPhone.slice(2);
+      document.getElementById('member-phone').value      = rawPhone;
+      document.getElementById('member-email').value      = contact.emailAddress || '';
+      document.getElementById('member-homenumber').value = contact.homeNumber || '';
+      document.getElementById('member-busnumber').value  = contact.businessNumber || '';
+    }
+
+    // Dependents
+    if (Array.isArray(dependents)) {
+      dependents.forEach(dep => addDependentSubform(dep));
+    }
+
+    modalTitle.innerHTML = `<span class="material-symbols-outlined text-primary">edit_square</span> Edit Member Info Record`;
+    submitBtn.textContent = 'Update Record';
+    modal.classList.remove('hidden');
+  }
+
+  function formatTin(raw) {
+    const d = raw.replace(/\D/g, '');
+    if (d.length === 12) return `${d.slice(0,3)}-${d.slice(3,6)}-${d.slice(6,9)}-${d.slice(9)}`;
+    return raw;
+  }
+
+  function closeModal() { modal.classList.add('hidden'); }
+
+  // ── Delete ────────────────────────────────────────────────────────────────
+  async function confirmDelete(pin, name) {
+    if (!confirm(`CRITICAL SYSTEM MANAGEMENT ALERT:\nYou are about to purge ${name} (PIN: ${pin}) from the registry ledger permanently along with all linked dependents.\n\nProceed with this deletion?`)) return;
+
+    try {
+      await apiFetch(`/members/${encodeURIComponent(pin)}`, { method: 'DELETE' });
+      membersStore = membersStore.filter(e => e.member.pinId !== pin);
+      renderTable(membersStore);
+      updateMetrics();
+      tableStatus.textContent = `Showing ${membersStore.length} indexed record${membersStore.length !== 1 ? 's' : ''}`;
+    } catch (err) {
+      alert(`Delete failed: ${err.message}`);
+    }
+  }
+
+  // ── Form submit (add / edit) ──────────────────────────────────────────────
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+    formError.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving…';
+
+    const mode = document.getElementById('form-mode').value;
+    const pin  = document.getElementById('member-pin').value.replace(/-/g, '');
+
+    // ── Collect dependents ──
+    const depsArray = [];
+    const relMap = { spouse: 'Legal Spouse', child: 'Child', parent: 'Parent' };
+    depsContainer.querySelectorAll('.dependent-modal-card').forEach(card => {
+      const nameVal = card.querySelector('.dep-name').value.trim();
+      if (!nameVal) return; // skip blank cards
+      depsArray.push({
+        dependentName:          nameVal,
+        relationshipToMember:   relMap[card.querySelector('.dep-rel').value] || card.querySelector('.dep-rel').value,
+        depDateOfBirth:         card.querySelector('.dep-dob').value,
+        depCitizenship:         card.querySelector('.dep-cit').value,
+        depNoMiddleNameFlag:    card.querySelector('.dep-no-middle').checked,
+        depMononymFlag:         card.querySelector('.dep-mononym').checked,
+        permanentDisabilityFlag: card.querySelector('.dep-dis').checked,
+      });
+    });
+
+    const contribType = contribTypeSelect.value;
+    const contribCat  = contribCatSelect.value;
+
+    const member = {
+      pinId:               pin,
+      purpose:             'REGISTRATION',
+      konsultaProvider:    document.getElementById('member-konsulta').value,
+      memberName:          document.getElementById('member-name').value,
+      memberMotherName:    document.getElementById('member-mother').value,
+      memberSpouseName:    document.getElementById('member-spouse').value || null,
+      dateOfBirth:         document.getElementById('member-dob').value,
+      birthPlace:          document.getElementById('member-pob').value,
+      sex:                 document.getElementById('member-sex').value,
+      civilStatus:         document.getElementById('member-status').value,
+      citizenship:         document.getElementById('member-citizenship').value,
+      noMiddleNameFlag:    document.getElementById('member-no-middle-name').checked,
+      mononymFlag:         document.getElementById('member-mononym').checked,
+      philSysIdNum:        document.getElementById('member-philsys').value.replace(/-/g, '') || null,
+      tinNumber:           document.getElementById('member-tin').value.replace(/-/g, '') || null,
+      directContributor:   contribType === 'direct'   ? contribCat : null,
+      indirectContributor: contribType === 'indirect' ? contribCat : null,
+      profession:          document.getElementById('member-profession').value,
+      income:              parseFloat(document.getElementById('member-income').value) || null,
+      proofOfIncome:       document.getElementById('member-proofincome').value,
+    };
+
+    const contact = {
+      permanentHomeAddress: document.getElementById('member-address').value,
+      mailAddress:          checkboxSameAddr.checked ? null : (mailAddrTextarea.value || null),
+      homeNumber:           document.getElementById('member-homenumber').value || null,
+      mobileNumber:         document.getElementById('member-phone').value,
+      businessNumber:       document.getElementById('member-busnumber').value || null,
+      emailAddress:         document.getElementById('member-email').value || null,
+    };
+
+    try {
+      let savedEntry;
+
+      if (mode === 'add') {
+        // POST /api/registration — same endpoint as step1–3 flow
+        const regData = await submitRegistration(member, contact);
+        // Submit dependents individually
+        for (const dep of depsArray) {
+          await submitDependent({ ...dep, pinId: pin });
+        }
+        savedEntry = {
+          member:     regData.member   || member,
+          contact:    regData.contactInfo || contact,
+          dependents: depsArray,
+        };
+        membersStore.push(savedEntry);
+      } else {
+        // PUT /api/members/:pin
+        const updData = await apiFetch(`/members/${encodeURIComponent(pin)}`, {
+          method:  'PUT',
+          body:    JSON.stringify({ member, contact }),
+        });
+        // Replace dependents: DELETE then re-add
+        await apiFetch(`/members/${encodeURIComponent(pin)}/dependents`, { method: 'DELETE' });
+        for (const dep of depsArray) {
+          await submitDependent({ ...dep, pinId: pin });
+        }
+        const idx = membersStore.findIndex(e => e.member.pinId === pin);
+        savedEntry = {
+          member:     updData.data?.member     || member,
+          contact:    updData.data?.contactInfo || contact,
+          dependents: depsArray,
+        };
+        if (idx !== -1) membersStore[idx] = savedEntry;
+      }
+
+      renderTable(membersStore);
+      updateMetrics();
+      tableStatus.textContent = `Showing ${membersStore.length} indexed record${membersStore.length !== 1 ? 's' : ''}`;
+      closeModal();
+    } catch (err) {
+      formError.textContent = `Save failed: ${err.message}`;
+      formError.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = mode === 'add' ? 'Save Complete Ledger' : 'Update Record';
+    }
+  }
+
+  loadMembers();
+</script>
+</body>
+</html>

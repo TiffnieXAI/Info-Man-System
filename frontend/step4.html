@@ -410,14 +410,14 @@
                 await submitDependent({ ...dep, pinId: draft.member.pinId });
             }
 
-            // Success
+            // Success — stash PIN for confirmation page then navigate
+            sessionStorage.setItem('confirmed_pin', draft.member.pinId);
             clearRegistrationDraft();
             submitIcon.classList.remove('animate-spin');
             submitIcon.textContent = 'check_circle';
             submitLabel.textContent = 'Success!';
 
-            alert('Registration successful!\nYour PhilHealth PIN ID is: ' + draft.member.pinId);
-            window.location.href = 'landing.html';
+            window.location.href = 'confirmation.html';
 
         } catch (err) {
             errorBanner.textContent = err.message || 'Something went wrong. Please try again.';

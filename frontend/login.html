@@ -3,207 +3,223 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>PhilHealth Member Portal - Login</title>
+    <title>PhilHealth Admin Portal - Login</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    
+
     <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-error-container": "#93000a",
-                    "surface-container": "#edeeef",
-                    "tertiary-fixed-dim": "#89d899",
-                    "inverse-surface": "#2e3132",
-                    "background": "#f8f9fa",
-                    "on-secondary-container": "#6e5c00",
-                    "on-tertiary-container": "#f6fff3",
-                    "surface-container-highest": "#e1e3e4",
-                    "secondary": "#705d00",
-                    "surface-container-low": "#f3f4f5",
-                    "primary-container": "#00873e",
-                    "primary": "#006b2f",
-                    "surface-container-high": "#e7e8e9",
-                    "tertiary": "#186937",
-                    "error": "#ba1a1a",
-                    "inverse-on-surface": "#f0f1f2",
-                    "on-background": "#191c1d",
-                    "secondary-fixed-dim": "#e9c400",
-                    "on-secondary": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "surface-container-lowest": "#ffffff",
-                    "primary-fixed": "#88faa0",
-                    "on-error": "#ffffff",
-                    "tertiary-fixed": "#a4f5b4",
-                    "on-primary-container": "#f7fff3",
-                    "on-surface": "#191c1d",
-                    "surface": "#f8f9fa",
-                    "surface-bright": "#f8f9fa",
-                    "on-secondary-fixed": "#221b00",
-                    "outline-variant": "#bdcabb",
-                    "on-primary-fixed-variant": "#005323",
-                    "on-secondary-fixed-variant": "#544600",
-                    "on-tertiary-fixed": "#00210b",
-                    "on-primary": "#ffffff",
-                    "outline": "#6e7a6d",
-                    "error-container": "#ffdad6",
-                    "on-primary-fixed": "#00210a",
-                    "tertiary-container": "#36834d",
-                    "surface-tint": "#006d31",
-                    "surface-dim": "#d9dadb",
-                    "surface-variant": "#e1e3e4",
-                    "on-surface-variant": "#3e4a3e",
-                    "inverse-primary": "#6cdd87",
-                    "on-tertiary-fixed-variant": "#005226",
-                    "secondary-container": "#fcd400",
-                    "primary-fixed-dim": "#6cdd87",
-                    "secondary-fixed": "#ffe16d"
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "surface-container": "#edeeef",
+                      "tertiary-fixed-dim": "#89d899",
+                      "inverse-surface": "#2e3132",
+                      "background": "#f8f9fa",
+                      "on-secondary-container": "#6e5c00",
+                      "on-tertiary-container": "#f6fff3",
+                      "surface-container-highest": "#e1e3e4",
+                      "secondary": "#705d00",
+                      "surface-container-low": "#f3f4f5",
+                      "primary-container": "#00873e",
+                      "primary": "#006b2f",
+                      "surface-container-high": "#e7e8e9",
+                      "tertiary": "#186937",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-background": "#191c1d",
+                      "secondary-fixed-dim": "#e9c400",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#88faa0",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#a4f5b4",
+                      "on-primary-container": "#f7fff3",
+                      "on-surface": "#191c1d",
+                      "surface": "#f8f9fa",
+                      "surface-bright": "#f8f9fa",
+                      "on-secondary-fixed": "#221b00",
+                      "outline-variant": "#bdcabb",
+                      "on-primary-fixed-variant": "#005323",
+                      "on-secondary-fixed-variant": "#544600",
+                      "on-tertiary-fixed": "#00210b",
+                      "on-primary": "#ffffff",
+                      "outline": "#6e7a6d",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#00210a",
+                      "tertiary-container": "#36834d",
+                      "surface-tint": "#006d31",
+                      "surface-dim": "#d9dadb",
+                      "surface-variant": "#e1e3e4",
+                      "on-surface-variant": "#3e4a3e",
+                      "inverse-primary": "#6cdd87",
+                      "on-tertiary-fixed-variant": "#005226",
+                      "secondary-container": "#fcd400",
+                      "primary-fixed-dim": "#6cdd87",
+                      "secondary-fixed": "#ffe16d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "xl": "80px",
+                      "md": "24px",
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "sm": "12px",
+                      "xs": "4px",
+                      "lg": "48px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "base": "8px",
-                    "xl": "80px",
-                    "md": "24px",
-                    "margin-desktop": "64px",
-                    "gutter": "24px",
-                    "sm": "12px",
-                    "xs": "4px",
-                    "lg": "48px",
-                    "margin-mobile": "16px"
-            },
-            "fontFamily": {
-                    "headline-lg": ["Inter"],
-                    "label-md": ["Inter"],
-                    "label-sm": ["Inter"],
-                    "headline-md": ["Inter"],
-                    "body-md": ["Inter"],
-                    "headline-lg-mobile": ["Inter"],
-                    "body-lg": ["Inter"],
-                    "display-lg": ["Inter"]
-            },
-            "fontSize": {
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
-                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-            }
           },
-        },
-      }
+        }
     </script>
     <style>
         body {
             background-color: #F8F9FA;
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         .login-card-shadow {
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+            box-shadow: 0px 10px 30px rgba(0, 107, 47, 0.04);
         }
         .input-transition {
-            transition: all 0.2s ease-in-out;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        /* Lively Gradient Flow Background */
         .animated-bg {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(-45deg, #f8f9fa, #edf7f1, #fcfdeb, #f8f9fa);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 12s ease infinite;
         }
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        /* Lively Card Entry Pop Animation */
+        @keyframes cardPop {
+            0% { opacity: 0; transform: translateY(30px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-card {
+            animation: cardPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Attention Shake Error Interaction */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .animate-shake {
+            animation: shake 0.4s ease-in-out;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col animated-bg">
 
 <main class="flex-grow flex items-center justify-center px-margin-mobile md:px-0 py-lg">
-    <div class="w-full max-w-[440px] bg-white rounded-xl login-card-shadow overflow-hidden flex flex-col p-md md:p-lg">
-        
-        <a href="landing.html" class="flex flex-col items-center mb-lg group hover:opacity-90 transition-opacity">
-            <div class="w-16 h-16 mb-sm flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary text-6xl group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+    <div id="loginCard" class="w-full max-w-[440px] bg-white rounded-xl login-card-shadow overflow-hidden flex flex-col p-md md:p-lg opacity-0 animate-card">
+
+        <a href="landing.html" class="flex flex-col items-center mb-lg group transition-all">
+            <div class="w-16 h-16 mb-sm flex items-center justify-center bg-primary-container/10 rounded-full p-2 group-hover:bg-primary-container/20 transition-colors">
+                <span class="material-symbols-outlined text-primary text-5xl transition-transform duration-500 group-hover:rotate-[360deg]" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
             </div>
             <div class="flex items-center gap-base">
-                <h1 class="font-headline-md text-headline-md font-bold text-primary">PhilHealth</h1>
+                <h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">PhilHealth</h1>
             </div>
-            <p class="font-body-md text-body-md text-on-surface-variant text-center mt-xs">Member Portal</p>
+            <div class="mt-xs px-2.5 py-0.5 bg-secondary-container text-on-secondary-fixed text-xs font-bold rounded-full tracking-wider uppercase shadow-sm">
+                Internal Admin Portal
+            </div>
         </a>
 
-        <form class="space-y-md" id="loginForm" action="{{DATA:SCREEN:SCREEN_25}}">
-            <div class="space-y-xs">
-                <label class="block font-label-md text-label-md text-on-surface-variant" for="pin">PhilHealth ID Number (PIN)</label>
+        <form class="space-y-md" id="loginForm">
+            <div class="space-y-xs group">
+                <label class="block font-label-md text-label-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="username">Administrative Username</label>
                 <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">person</span>
-                    <input class="w-full pl-12 pr-4 py-3 bg-surface rounded-lg border border-transparent focus:border-primary focus:ring-0 focus:bg-white input-transition font-body-md text-body-md text-on-surface outline-none" id="pin" name="pin" placeholder="00-000000000-0" required="" type="text">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline transition-colors group-focus-within:text-primary">account_circle</span>
+                    <input class="w-full pl-12 pr-4 py-3 bg-surface rounded-lg border border-transparent focus:border-primary focus:ring-2 focus:ring-primary/10 focus:bg-white input-transition font-body-md text-body-md text-on-surface outline-none" id="username" name="username" placeholder="e.g. admin.officer" required type="text">
                 </div>
             </div>
-            <div class="space-y-xs">
+
+            <div class="space-y-xs group">
                 <div class="flex justify-between items-center">
-                    <label class="font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
-                    <a class="font-label-sm text-label-sm text-primary hover:underline transition-all" href="#">Forgot Password?</a>
+                    <label class="font-label-md text-label-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="password">Security Access Password</label>
+                    <a class="font-label-sm text-label-sm text-primary hover:underline transition-all" href="#">Reset Key?</a>
                 </div>
                 <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">lock</span>
-                    <input class="w-full pl-12 pr-12 py-3 bg-surface rounded-lg border border-transparent focus:border-primary focus:ring-0 focus:bg-white input-transition font-body-md text-body-md text-on-surface outline-none" id="password" name="password" placeholder="••••••••" required="" type="password">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline transition-colors group-focus-within:text-primary">admin_panel_settings</span>
+                    <input class="w-full pl-12 pr-12 py-3 bg-surface rounded-lg border border-transparent focus:border-primary focus:ring-2 focus:ring-primary/10 focus:bg-white input-transition font-body-md text-body-md text-on-surface outline-none" id="password" name="password" placeholder="••••••••" required type="password">
                     <button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface-variant transition-colors" id="togglePassword" type="button">
                         <span class="material-symbols-outlined">visibility</span>
                     </button>
                 </div>
             </div>
-            <button class="w-full py-3 bg-primary text-white rounded-lg font-label-md text-label-md font-bold hover:bg-primary-container active:scale-[0.98] transition-all shadow-sm" type="submit">
-                Log In
+
+            <button class="w-full py-3 bg-primary text-white rounded-lg font-label-md text-label-md font-bold hover:bg-primary-container active:scale-[0.97] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2" type="submit">
+                Authorize & Log In
             </button>
-            <div class="relative flex py-sm items-center">
+
+            <div class="relative flex py-xs items-center">
                 <div class="flex-grow border-t border-outline-variant"></div>
-                <span class="flex-shrink mx-4 font-label-sm text-label-sm text-outline">OR</span>
+                <span class="flex-shrink mx-4 font-label-sm text-label-sm text-outline">SECURE ENVIRONMENT</span>
                 <div class="flex-grow border-t border-outline-variant"></div>
             </div>
-            <button class="w-full py-3 bg-white border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md font-medium hover:bg-surface-container-low active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="button">
-                <span class="material-symbols-outlined text-primary">qr_code_2</span>
-                Login with PhilHealth Digital ID
+
+            <button class="w-full py-3 bg-white border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md font-medium hover:bg-surface-container-low active:scale-[0.97] transition-all flex items-center justify-center gap-2" type="button">
+                <span class="material-symbols-outlined text-primary">fingerprint</span>
+                Verify with Biometric Smartcard
             </button>
         </form>
-
-        <div class="mt-lg text-center">
-            <p class="font-body-md text-body-md text-on-surface-variant">
-                Don't have an account? 
-                <a class="text-primary font-bold hover:underline" href="{{DATA:SCREEN:SCREEN_18}}">Create an Account</a>
-            </p>
-        </div>
-        <div class="mt-md text-center">
-            <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_23}}">Admin Login</a>
-        </div>
     </div>
 </main>
 
 <footer class="w-full py-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center bg-surface-container border-t border-outline-variant">
-    <p class="font-label-sm text-label-sm text-on-surface-variant mb-md md:mb-0">© 2026 PhilHealth. All rights reserved.</p>
+    <p class="font-label-sm text-label-sm text-on-surface-variant mb-md md:mb-0">© 2026 PhilHealth Admin Node. Authorized access personnel only.</p>
     <div class="flex flex-wrap justify-center gap-md">
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Contact Us</a>
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Privacy Policy</a>
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Terms of Service</a>
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Quick Links</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Clearance Helpdesk</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:underline transition-all" href="#">Data Privacy Notice</a>
     </div>
 </footer>
 
 <script>
-    // Password Visibility Toggle
+    // Password Visibility Switcher
     const togglePassword = document.querySelector('#togglePassword');
     const passwordInput = document.querySelector('#password');
 
@@ -213,40 +229,53 @@
         this.querySelector('span').textContent = type === 'password' ? 'visibility' : 'visibility_off';
     });
 
-    // Simple Form Submission Interaction
+    // Form Submission Interaction & admin.html Router Routing
     const loginForm = document.querySelector('#loginForm');
+    const loginCard = document.querySelector('#loginCard');
+
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const btn = loginForm.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-        
-        btn.disabled = true;
-        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Authenticating...';
-        
-        setTimeout(() => {
-            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Success';
-            btn.classList.replace('bg-primary', 'bg-tertiary-container');
-            setTimeout(() => {
-                alert('Login successful! Redirecting to Member Dashboard...');
-                btn.disabled = false;
-                btn.textContent = originalText;
-                btn.classList.replace('bg-tertiary-container', 'bg-primary');
-            }, 1000);
-        }, 2000);
-    });
 
-    // PIN Input Masking (Visual only)
-    const pinInput = document.querySelector('#pin');
-    pinInput.addEventListener('input', (e) => {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 2 && value.length <= 11) {
-            value = value.slice(0, 2) + '-' + value.slice(2);
-        } else if (value.length > 11) {
-            value = value.slice(0, 2) + '-' + value.slice(2, 11) + '-' + value.slice(11, 12);
-        }
-        e.target.value = value.slice(0, 14);
+        const usernameVal = document.querySelector('#username').value.trim();
+        const passwordVal = document.querySelector('#password').value;
+        const btn = loginForm.querySelector('button[type="submit"]');
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Establishing Encrypted Session...';
+
+        // Simulating systemic verification pipeline duration
+        setTimeout(() => {
+            // Live authentication criteria validation simulation
+            if (usernameVal.length < 3 || passwordVal.length < 4) {
+                loginCard.classList.add('animate-shake');
+                btn.disabled = false;
+                btn.className = "w-full py-3 bg-error text-white rounded-lg font-label-md text-label-md font-bold transition-all shadow-md";
+                btn.innerHTML = '<span class="material-symbols-outlined">error</span> Access Denied: Invalid Username/Password';
+
+                setTimeout(() => {
+                    loginCard.classList.remove('animate-shake');
+                    btn.className = "w-full py-3 bg-primary text-white rounded-lg font-label-md text-label-md font-bold hover:bg-primary-container active:scale-[0.97] transition-all shadow-md";
+                    btn.innerHTML = 'Authorize & Log In';
+                }, 2200);
+                return;
+            }
+
+            // Success Transition Effect
+            btn.innerHTML = '<span class="material-symbols-outlined">verified</span> Security Clearance Granted';
+            btn.classList.replace('bg-primary', 'bg-tertiary-container');
+
+            setTimeout(() => {
+                // Outbound drop out-fade animation before window location re-routing
+                loginCard.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 1, 1)';
+                loginCard.style.opacity = '0';
+                loginCard.style.transform = 'translateY(-20px) scale(0.95)';
+
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 400);
+            }, 1000);
+        }, 1500);
     });
 </script>
 </body>
 </html>
-

@@ -4,18 +4,25 @@ import com.example.infomansys.dto.MemberDTO;
 import com.example.infomansys.entity.Member;
 import com.example.infomansys.exception.DuplicateResourceException;
 import com.example.infomansys.exception.ResourceNotFoundException;
+import com.example.infomansys.repository.ContactInfoRepository;
+import com.example.infomansys.repository.DependentRepository;
 import com.example.infomansys.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final ContactInfoRepository contactInfoRepository;
+    private final DependentRepository dependentRepository;
 
     // ── CREATE ────────────────────────────────────────────────────────────────
     @Transactional
@@ -32,6 +39,19 @@ public class MemberService {
     @Transactional(readOnly = true)
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
+    }
+
+    // ── READ ALL (composed for admin UI: { member, contact, dependents }) ─────
+    @Transactional(readOnly = true)
+    public List<Map<String, Object>> getAllMembersComposed() {
+        List<Member> members = memberRepository.findAll();
+        return members.stream().map(member -> {
+            Map<String, Object> entry = new LinkedHashMap<>();
+            entry.put("member", member);
+            entry.put("contact", contactInfoRepository.findByMember_PinId(member.getPinId()).orElse(null));
+            entry.put("dependents", dependentRepository.findByMember_PinId(member.getPinId()));
+            return entry;
+        }).collect(Collectors.toList());
     }
 
     // ── READ ONE ──────────────────────────────────────────────────────────────

@@ -1,0 +1,252 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>PhilHealth Member Portal - Registration Submitted</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#3e4a3e",
+                        "on-primary-fixed-variant": "#005323",
+                        "surface-tint": "#006d31",
+                        "on-secondary-container": "#6e5c00",
+                        "outline": "#6e7a6d",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#6cdd87",
+                        "inverse-primary": "#6cdd87",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-container": "#f6fff3",
+                        "secondary": "#705d00",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#a4f5b4",
+                        "on-tertiary-fixed-variant": "#005226",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary-fixed": "#00210b",
+                        "on-surface": "#191c1d",
+                        "on-background": "#191c1d",
+                        "secondary-fixed-dim": "#e9c400",
+                        "primary": "#006b2f",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#88faa0",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-container": "#fcd400",
+                        "primary-container": "#00873e",
+                        "surface-dim": "#d9dadb",
+                        "on-secondary-fixed-variant": "#544600",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#f7fff3",
+                        "on-primary": "#ffffff",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#221b00",
+                        "tertiary-container": "#36834d",
+                        "tertiary": "#186937",
+                        "surface": "#f8f9fa",
+                        "outline-variant": "#bdcabb",
+                        "on-primary-fixed": "#00210a",
+                        "tertiary-fixed-dim": "#89d899"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+
+        /* 1. Cinematic green full wash splash animation */
+        @keyframes fullPageGreenWash {
+            0% { transform: scale(0); opacity: 0; border-radius: 9999px; }
+            50% { border-radius: 9999px; }
+            100% { transform: scale(2.5); opacity: 1; border-radius: 0px; }
+        }
+        .animate-green-splash {
+            animation: fullPageGreenWash 1.1s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+        }
+
+        /* 2. Oversized Check Circle Pop-in physics */
+        @keyframes elasticPop {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.15); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-check-pop {
+            animation: elasticPop 0.6s cubic-bezier(0.34, 1.6, 0.64, 1) 1s both;
+        }
+
+        /* 3. Smooth content fade entry */
+        @keyframes textFadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-text-fade {
+            animation: textFadeIn 0.5s ease-out 1.4s both;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative bg-background">
+
+<div class="absolute inset-0 z-40 flex items-center justify-center overflow-hidden pointer-events-none">
+    <div class="w-screen h-screen bg-primary origin-center animate-green-splash"></div>
+</div>
+
+<div class="relative z-50 flex flex-col min-h-screen">
+
+    <header class="bg-transparent docked full-width top-0 z-50 sticky transition-colors duration-300">
+        <nav class="flex justify-between items-center px-margin-desktop w-full h-16 max-w-[1440px] mx-auto">
+            <a href="landing.html" class="flex items-center gap-base group opacity-90">
+                <span class="material-symbols-outlined text-white text-3xl transition-transform" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+                <span class="font-headline-md text-headline-md font-bold text-white">PhilHealth</span>
+            </a>
+            <div class="hidden md:flex items-center gap-lg">
+                <div class="flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-white" data-icon="language">language</span>
+                    <span class="font-body-md text-body-md text-white">English</span>
+                </div>
+                <div class="flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-white" data-icon="notifications">notifications</span>
+                </div>
+                <div class="h-8 w-8 rounded-full bg-white/20 overflow-hidden ring-2 ring-white/40">
+                    <img alt="Member Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNL_j9Py-KzngQs815BXr4U_JFIMtsor2A4CQwyIaA1El5K1KUV_FZLSbF7I6qRPn9bzhBakZw9Lzox7O4MYq1rC_1cRaiM1FO7IuMwvIrOR0tHa3gDYJjsgIoFMQwUxG0mrWsPsMehfGxFG8AVW7VDp4oerXU43ifGWmwMNrwgF0n-A9DjHn6O7oMrfeWOMp77QT-vc_b5WYoJ4iOwYsUglIQ9qTRDvunSrvuQsV951aYLmNZgHpvfKeZeR1NAEbKDG5aZnfr6tvk"/>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center py-xl px-margin-mobile md:px-0">
+        <div class="max-w-xl mx-auto text-center flex flex-col items-center">
+
+            <div class="animate-check-pop mb-lg flex items-center justify-center">
+                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white shadow-2xl flex items-center justify-center transform transition-transform hover:scale-105 duration-300">
+                    <span class="material-symbols-outlined text-primary text-6xl md:text-7xl font-bold" style="font-variation-settings: 'FILL' 0, 'wght' 700;">check</span>
+                </div>
+            </div>
+
+            <div class="animate-text-fade space-y-md px-base">
+                <h1 class="font-display-lg text-display-lg text-white font-bold tracking-tight">
+                    Registration Submitted!
+                </h1>
+                <p class="font-body-lg text-body-lg text-primary-fixed max-w-md mx-auto leading-relaxed">
+                    Thank you for Trusting PhilHealth. Your application has been logged into our secure verification pipeline.
+                </p>
+
+                <div class="bg-white/10 border border-white/20 rounded-xl p-md text-left text-white max-w-sm mx-auto shadow-inner backdrop-blur-sm">
+                    <div class="flex items-center gap-sm mb-xs">
+                        <span class="material-symbols-outlined text-secondary-fixed">info</span>
+                        <span class="font-label-md text-label-md font-bold text-secondary-fixed">Next Steps</span>
+                    </div>
+                    <p class="font-label-sm text-label-sm text-white/90 leading-relaxed">
+                        A confirmation ticket with your routing metadata has been transmitted to your email address. Internal clearance usually takes 24-48 business hours.
+                    </p>
+                </div>
+
+                <div id="pin-display" class="hidden bg-white/10 border border-white/20 rounded-xl p-md text-left text-white max-w-sm mx-auto shadow-inner backdrop-blur-sm">
+                    <div class="flex items-center gap-sm mb-xs">
+                        <span class="material-symbols-outlined text-secondary-fixed">badge</span>
+                        <span class="font-label-md text-label-md font-bold text-secondary-fixed">Your PhilHealth PIN</span>
+                    </div>
+                    <p id="pin-value" class="font-mono text-xl font-bold text-white tracking-widest"></p>
+                </div>
+
+                <div class="pt-lg">
+                    <a href="landing.html" id="home-btn" class="inline-block w-full sm:w-auto px-xl py-md bg-white text-primary font-bold rounded-xl hover:bg-surface-bright shadow-lg transition-all active:scale-95 text-center text-body-md tracking-wide">
+                        Back to Home Page
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-transparent border-t border-white/10 w-full py-lg">
+        <div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-[1140px] mx-auto gap-md">
+            <div class="flex flex-col items-center md:items-start gap-xs">
+                <a href="landing.html" class="flex items-center gap-base">
+                    <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+                    <span class="font-headline-sm text-headline-sm text-white font-bold">PhilHealth Portal</span>
+                </a>
+                <p class="font-label-sm text-label-sm text-primary-fixed/80">© 2026 PhilHealth. All rights reserved.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-lg mt-md md:mt-0">
+                <a class="font-label-sm text-label-sm text-primary-fixed hover:text-white transition-all hover:underline" href="#">Privacy Policy</a>
+                <a class="font-label-sm text-label-sm text-primary-fixed hover:text-white transition-all hover:underline" href="#">Terms of Service</a>
+                <a class="font-label-sm text-label-sm text-primary-fixed hover:text-white transition-all hover:underline" href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="js/api.js"></script>
+<script>
+    // Show PIN from sessionStorage if it was passed through
+    const pinId = sessionStorage.getItem('confirmed_pin');
+    if (pinId) {
+        document.getElementById('pin-display').classList.remove('hidden');
+        document.getElementById('pin-value').textContent = pinId;
+        sessionStorage.removeItem('confirmed_pin');
+    }
+
+    // Micro-interaction button hover
+    const homeBtn = document.getElementById('home-btn');
+    if (homeBtn) {
+        homeBtn.addEventListener('mouseover', () => { homeBtn.style.transform = 'translateY(-2px)'; });
+        homeBtn.addEventListener('mouseout',  () => { homeBtn.style.transform = 'translateY(0px)'; });
+    }
+</script>
+</body></html>

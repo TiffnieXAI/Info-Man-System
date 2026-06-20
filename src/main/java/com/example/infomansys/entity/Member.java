@@ -1,5 +1,6 @@
 package com.example.infomansys.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -88,9 +89,11 @@ public class Member {
     private String proofOfIncome;
 
     // Relationships
+    @JsonIgnore
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dependent> dependents;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private ContactInfo contactInfo;
 }
